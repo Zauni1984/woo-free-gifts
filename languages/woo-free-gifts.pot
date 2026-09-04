@@ -1,0 +1,965 @@
+# Copyright (C) 2026 Stefan Zaunreither
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Woo Free Gifts Premium 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/zauni1984/woo-free-gifts/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-04T12:00:00+00:00\n"
+"PO-Revision-Date: 2026-09-04T12:00:00+00:00\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: woo-free-gifts\n"
+
+#: includes/admin/class-wfg-admin.php:75 includes/admin/class-wfg-admin.php:76
+msgid "Free Gifts"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:124
+msgid "Delete this rule? Custom gifts attached to it are moved to the trash."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:125
+msgid "Choose gift image"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:126
+msgid "Use this image"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:127 includes/admin/views/rule-edit.php:51
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:142
+msgid "Free gift (hidden)"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:196
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:213
+msgid "Rule not found."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:226
+msgid "Woo Free Gifts"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:228
+msgid "Add rule"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:244
+msgid "Gift rules"
+msgstr ""
+
+#. translators: %s: settings link
+#: includes/admin/class-wfg-admin.php:245 includes/admin/views/rule-edit.php:186 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:139
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:246 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:306
+msgid "Popup"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:247
+msgid "Statistics"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:287
+msgid "Rule saved."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:288
+msgid "Rule deleted."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:289
+msgid "Rule duplicated. It is disabled until you enable it."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:290
+msgid "Rule updated."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:291
+msgid "Settings saved."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:292
+msgid "Statistics reset."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:293
+msgid "The rule was not saved: add at least one gift."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:294
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:334
+msgid "You do not have permission to do this."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:380
+msgid "Gift rule"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:458
+msgid "Please pick a specific variation instead of the variable parent product."
+msgstr ""
+
+#. translators: %s: original rule title
+#: includes/admin/class-wfg-admin.php:542
+msgid "%s (copy)"
+msgstr ""
+
+#: includes/admin/views/popup.php:28
+msgid "Promo popup"
+msgstr ""
+
+#: includes/admin/views/popup.php:29
+msgid "A lightweight, cache-friendly popup that tells visitors about your gift offers. It is shown once per visitor (configurable) on product pages and product archives."
+msgstr ""
+
+#: includes/admin/views/popup.php:33
+msgid "Enable the popup"
+msgstr ""
+
+#: includes/admin/views/popup.php:36
+msgid "Show on"
+msgstr ""
+
+#: includes/admin/views/popup.php:38
+msgid "Single product pages"
+msgstr ""
+
+#: includes/admin/views/popup.php:39
+msgid "Shop page and product categories / tags"
+msgstr ""
+
+#: includes/admin/views/popup.php:43
+msgid "Frequency"
+msgstr ""
+
+#: includes/admin/views/popup.php:46
+msgid "Once per browser session"
+msgstr ""
+
+#: includes/admin/views/popup.php:47
+msgid "Once every X days"
+msgstr ""
+
+#: includes/admin/views/popup.php:48
+msgid "Only once per visitor"
+msgstr ""
+
+#: includes/admin/views/popup.php:49
+msgid "On every page view (testing)"
+msgstr ""
+
+#: includes/admin/views/popup.php:51
+msgid "Days"
+msgstr ""
+
+#: includes/admin/views/popup.php:52
+msgid "Delay (seconds)"
+msgstr ""
+
+#: includes/admin/views/popup.php:53
+msgid "Changing title, text or offers shows the popup again to visitors who already dismissed it."
+msgstr ""
+
+#: includes/admin/views/popup.php:57
+msgid "Title"
+msgstr ""
+
+#: includes/admin/views/popup.php:61
+msgid "Text"
+msgstr ""
+
+#: includes/admin/views/popup.php:78
+msgid "Offers"
+msgstr ""
+
+#: includes/admin/views/popup.php:80
+msgid "List the active gift offers with images"
+msgstr ""
+
+#. translators: %d: number of rules
+#: includes/admin/views/popup.php:85
+msgid "%d active rule is flagged for the popup."
+msgid_plural "%d active rules are flagged for the popup."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of rules
+#: includes/admin/views/popup.php:89
+msgid "You control this per rule under \"Messages & popup\"."
+msgstr ""
+
+#: includes/admin/views/popup.php:94
+msgid "Image"
+msgstr ""
+
+#: includes/admin/views/popup.php:105 includes/admin/views/rule-edit.php:77
+msgid "Choose image"
+msgstr ""
+
+#: includes/admin/views/popup.php:106 includes/admin/views/rule-edit.php:78
+msgid "Remove image"
+msgstr ""
+
+#: includes/admin/views/popup.php:111
+msgid "Button"
+msgstr ""
+
+#: includes/admin/views/popup.php:113
+msgid "Button label"
+msgstr ""
+
+#: includes/admin/views/popup.php:114
+msgid "Optional link (empty = just close)"
+msgstr ""
+
+#: includes/admin/views/popup.php:118 includes/admin/views/settings.php:124
+msgid "Accent colour"
+msgstr ""
+
+#: includes/admin/views/popup.php:124
+msgid "Save popup"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:41
+msgid "Gift type"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:43
+msgid "Product from the catalog"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:44
+msgid "Custom gift (not listed in the shop)"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:48
+msgid "Qty"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:55
+msgid "Search for a product or variation…"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:62
+msgid "Variable products: pick the exact variation. Stock is respected – an out-of-stock gift is skipped automatically."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:83
+msgid "Gift name"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:84
+msgid "e.g. Free seed sample"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:89
+msgid "Description (optional)"
+msgstr ""
+
+#. translators: %s: weight unit
+#: includes/admin/views/rule-edit.php:95
+msgid "Weight (%s)"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:100
+msgid "Virtual (no shipping)"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:103
+msgid "A hidden product is created for this gift. It never appears in the shop, search, feeds or sitemaps and cannot be bought separately."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:145
+msgid "New gift rule"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:145
+msgid "Edit gift rule"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:148
+msgid "Rule name"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:150
+msgid "e.g. Free seed from 50 €"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:151
+msgid "Internal name. Also shown on the order line as the gift label."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:155 includes/admin/views/rules-list.php:43
+msgid "Status"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:156
+msgid "Rule is active"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:159 includes/admin/views/rules-list.php:41
+msgid "Priority"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:162
+msgid "Higher wins when the stacking mode is \"highest rule only\". With the same priority the higher cart threshold wins."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:169 includes/admin/views/rules-list.php:39
+msgid "Conditions"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:170
+msgid "All conditions you fill in must be met (AND). Leave a condition empty to ignore it."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:173
+msgid "Minimum cart value"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:178
+msgid "Maximum"
+msgstr ""
+
+#. translators: %s: settings link
+#: includes/admin/views/rule-edit.php:185
+msgid "Compared against the cart value without gifts. Tax / coupon handling is configured under %s."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:193
+msgid "Required products"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:195
+msgid "Search products, variations or bundles…"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:201
+msgid "All of these products must be in the cart"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:202
+msgid "Any one of these products is enough"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:206
+msgid "Min. quantity each"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:210
+msgid "\"Buy product B and C, get gift X\". Items inside product bundles count as well (configurable in the settings)."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:214
+msgid "Required categories"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:216
+msgid "Any category…"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:221
+msgid "The cart must contain at least one product from one of these categories (child categories included)."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:225 includes/admin/views/settings.php:53
+msgid "Bundles"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:227
+msgid "Only when the cart contains a bundle product"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:228
+msgid "Works with WooCommerce Product Bundles, WPC Product Bundles, YITH Bundles, Composite and Grouped products. To require a specific bundle, add it under \"Required products\"."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:232
+msgid "Minimum item count"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:236
+msgid "Customers"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:238
+msgid "All customer roles…"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:243
+msgid "Logged-in customers only"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:244
+msgid "Only once per customer account (guests are not tracked)"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:248
+msgid "Schedule"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:250
+msgid "From"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:251
+msgid "Until"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:252
+msgid "Leave empty for no time limit. Dates use the site timezone."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:259 includes/admin/views/rules-list.php:40
+msgid "Gifts"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:262
+msgid "When several gifts are listed"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:264
+msgid "Add all of them automatically"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:265
+msgid "Let the customer pick one in the cart"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:279
+msgid "+ Add gift"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:283
+msgid "Messages & popup"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:286
+msgid "Progress bar"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:288
+msgid "Show this rule in the cart progress bar and product page hint (cart-value rules only)"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:292 includes/admin/views/settings.php:90
+msgid "Progress message"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:295
+msgid "Overrides the global text. Placeholders: {remaining}, {threshold}, {gift}"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:299 includes/admin/views/settings.php:97
+msgid "Unlocked message"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:302
+msgid "Overrides the global text. Placeholders: {threshold}, {gift}"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:308
+msgid "List this offer in the promo popup"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:309
+msgid "Optional custom line, e.g. \"Free seed with every order over 50 €\""
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:319
+msgid "Create rule"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:319
+msgid "Save rule"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:320
+msgid "← Back to all rules"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:322
+msgid "Delete rule"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:325
+msgid "Examples"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:327
+msgid "Free seed from 50 €: set \"Minimum cart value\" to 50 and add the seed as gift."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:328
+msgid "Book from 100 €: second rule with 100 as minimum. With stacking \"all\", a 120 € cart gets both."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:329
+msgid "Buy B and C, get X: add B and C under \"Required products\" (match: all)."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:330
+msgid "Gift with a bundle: add the bundle product under \"Required products\" or tick \"Only when the cart contains a bundle\"."
+msgstr ""
+
+#. translators: %s: settings link
+#: includes/admin/views/rules-list.php:28
+msgid "Gifts are currently disabled globally. Enable them under %s."
+msgstr ""
+
+#: includes/admin/views/rules-list.php:38 includes/admin/views/stats.php:25
+msgid "Rule"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:42
+msgid "Claimed"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:49
+msgid "No gift rules yet."
+msgstr ""
+
+#: includes/admin/views/rules-list.php:50
+msgid "Create your first rule"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:75
+msgid "Edit"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:76
+msgid "Disable"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:76
+msgid "Enable"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:77
+msgid "Duplicate"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:78
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:87
+msgid "Roles:"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:90
+msgid "Once per customer"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:106
+msgid "custom"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:109
+msgid "out of stock"
+msgstr ""
+
+#. translators: %d: product id
+#: includes/admin/views/rules-list.php:112
+msgid "Missing product #%d"
+msgstr ""
+
+#. translators: %d: product id
+#: includes/admin/views/rules-list.php:118
+msgid "Customer picks one"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:125
+msgid "Active"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:127
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:138
+msgid "Stacking: only the qualifying rule with the highest priority adds its gifts."
+msgstr ""
+
+#: includes/admin/views/rules-list.php:140
+msgid "Stacking: every qualifying rule adds its gifts."
+msgstr ""
+
+#: includes/admin/views/rules-list.php:143
+msgid "Shortcodes: [wfg_progress] shows the progress bar anywhere, [wfg_gift_list] lists all active offers."
+msgstr ""
+
+#: includes/admin/views/settings.php:20
+msgid "General"
+msgstr ""
+
+#: includes/admin/views/settings.php:23
+msgid "Free gifts"
+msgstr ""
+
+#: includes/admin/views/settings.php:24
+msgid "Enable the gift engine"
+msgstr ""
+
+#: includes/admin/views/settings.php:27
+msgid "Cart value basis"
+msgstr ""
+
+#: includes/admin/views/settings.php:30
+msgid "Subtotal excluding tax"
+msgstr ""
+
+#: includes/admin/views/settings.php:31
+msgid "Subtotal including tax"
+msgstr ""
+
+#: includes/admin/views/settings.php:33
+msgid "Deduct coupon discounts before comparing with the thresholds"
+msgstr ""
+
+#: includes/admin/views/settings.php:34
+msgid "Gifts themselves never count towards the cart value."
+msgstr ""
+
+#: includes/admin/views/settings.php:38
+msgid "Stacking"
+msgstr ""
+
+#: includes/admin/views/settings.php:41
+msgid "Every qualifying rule adds its gifts (50 € seed + 100 € book = both)"
+msgstr ""
+
+#: includes/admin/views/settings.php:42
+msgid "Only the qualifying rule with the highest priority / threshold"
+msgstr ""
+
+#: includes/admin/views/settings.php:47
+msgid "Customer control"
+msgstr ""
+
+#: includes/admin/views/settings.php:49
+msgid "Customers may remove a gift from the cart (it is not re-added until the rule is lost and regained)"
+msgstr ""
+
+#: includes/admin/views/settings.php:55
+msgid "Products inside bundles count for \"Required products\" and \"Required categories\""
+msgstr ""
+
+#: includes/admin/views/settings.php:59
+msgid "Custom gifts"
+msgstr ""
+
+#: includes/admin/views/settings.php:61
+msgid "New custom gifts are virtual by default (no shipping)"
+msgstr ""
+
+#. translators: %s: link to product list
+#: includes/admin/views/settings.php:66
+msgid "Hidden gift products are excluded from the product list. %s"
+msgstr ""
+
+#. translators: %s: link to product list
+#: includes/admin/views/settings.php:67
+msgid "Show them"
+msgstr ""
+
+#: includes/admin/views/settings.php:77
+msgid "Cart & product page"
+msgstr ""
+
+#: includes/admin/views/settings.php:80
+msgid "Show progress bar"
+msgstr ""
+
+#: includes/admin/views/settings.php:82
+msgid "Cart page"
+msgstr ""
+
+#: includes/admin/views/settings.php:83
+msgid "Checkout page"
+msgstr ""
+
+#: includes/admin/views/settings.php:84
+msgid "Mini cart (widget / header cart)"
+msgstr ""
+
+#: includes/admin/views/settings.php:85
+msgid "Gift hint on single product pages"
+msgstr ""
+
+#: includes/admin/views/settings.php:86
+msgid "Block-based cart/checkout pages: use the [wfg_progress] shortcode in a Shortcode block above the cart."
+msgstr ""
+
+#: includes/admin/views/settings.php:93
+msgid "Placeholders: {remaining}, {threshold}, {gift}"
+msgstr ""
+
+#: includes/admin/views/settings.php:100
+msgid "Placeholders: {threshold}, {gift}. Also shown as a notice when a gift is added."
+msgstr ""
+
+#: includes/admin/views/settings.php:104
+msgid "Gift choice title"
+msgstr ""
+
+#: includes/admin/views/settings.php:108
+msgid "Product page hint"
+msgstr ""
+
+#: includes/admin/views/settings.php:111
+msgid "Uses the cart-value rule with the lowest threshold. Placeholders: {threshold}, {gift}"
+msgstr ""
+
+#: includes/admin/views/settings.php:115
+msgid "Gift badge"
+msgstr ""
+
+#: includes/admin/views/settings.php:118
+msgid "Price label"
+msgstr ""
+
+#: includes/admin/views/settings.php:120
+msgid "Shown next to gift lines in cart, checkout, e-mails and orders."
+msgstr ""
+
+#: includes/admin/views/settings.php:131
+msgid "Maintenance"
+msgstr ""
+
+#: includes/admin/views/settings.php:134
+msgid "Debug log"
+msgstr ""
+
+#: includes/admin/views/settings.php:136
+msgid "Write gift decisions to WooCommerce → Status → Logs (source: woo-free-gifts)"
+msgstr ""
+
+#: includes/admin/views/settings.php:140
+msgid "Uninstall"
+msgstr ""
+
+#: includes/admin/views/settings.php:142
+msgid "Delete all rules, settings, statistics and hidden gift products when the plugin is deleted"
+msgstr ""
+
+#: includes/admin/views/settings.php:148
+msgid "Save settings"
+msgstr ""
+
+#: includes/admin/views/stats.php:19
+msgid "Gifts claimed"
+msgstr ""
+
+#: includes/admin/views/stats.php:20
+msgid "orders with gifts in total"
+msgstr ""
+
+#: includes/admin/views/stats.php:26
+msgid "Orders"
+msgstr ""
+
+#: includes/admin/views/stats.php:27
+msgid "Last claimed"
+msgstr ""
+
+#: includes/admin/views/stats.php:32
+msgid "No gifts have been claimed yet."
+msgstr ""
+
+#. translators: %d: rule id
+#: includes/admin/views/stats.php:53
+msgid "Deleted rule #%d"
+msgstr ""
+
+#: includes/admin/views/stats.php:64
+msgid "Reset all statistics?"
+msgstr ""
+
+#: includes/admin/views/stats.php:64
+msgid "Reset statistics"
+msgstr ""
+
+#: includes/admin/views/stats.php:66
+msgid "Counts are recorded when an order is placed. Each order line also carries the gift rule as order item meta, so you can filter orders in reports."
+msgstr ""
+
+#: includes/class-wfg-ajax.php:59
+msgid "Gifts are currently disabled."
+msgstr ""
+
+#: includes/class-wfg-ajax.php:65
+msgid "Invalid request."
+msgstr ""
+
+#: includes/class-wfg-ajax.php:72 includes/class-wfg-frontend.php:85
+msgid "Something went wrong. Please reload the page."
+msgstr ""
+
+#: includes/class-wfg-ajax.php:81
+msgid "Your gift has been added to the cart."
+msgstr ""
+
+#: includes/class-wfg-cart.php:415
+msgid "Your cart is not available."
+msgstr ""
+
+#: includes/class-wfg-cart.php:420
+msgid "Your cart does not qualify for this gift (yet)."
+msgstr ""
+
+#: includes/class-wfg-cart.php:431
+msgid "This gift is not available."
+msgstr ""
+
+#: includes/class-wfg-cart.php:675 includes/class-wfg-order.php:70 includes/class-wfg-order.php:83 includes/class-wfg-settings.php:38
+msgid "Free gift"
+msgstr ""
+
+#: includes/class-wfg-engine.php:456
+msgid "or"
+msgstr ""
+
+#: includes/class-wfg-frontend.php:307
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#: includes/class-wfg-gift-products.php:80
+msgid "A custom gift needs a name."
+msgstr ""
+
+#: includes/class-wfg-gift-products.php:119
+msgid "The gift product could not be saved."
+msgstr ""
+
+#: includes/class-wfg-gift-products.php:265
+msgid "This product is a free gift and cannot be purchased separately."
+msgstr ""
+
+#. translators: 1: gift name(s), 2: formatted amount
+#: includes/class-wfg-popup.php:119
+msgid "%1$s for free from %2$s order value"
+msgstr ""
+
+#. translators: 1: gift name(s), 2: condition description
+#: includes/class-wfg-popup.php:127
+msgid "%1$s for free – %2$s"
+msgstr ""
+
+#. translators: %s: formatted amount
+#: includes/class-wfg-rules.php:305
+msgid "Cart value ≥ %s"
+msgstr ""
+
+#. translators: %s: formatted amount
+#: includes/class-wfg-rules.php:309
+msgid "Cart value ≤ %s"
+msgstr ""
+
+#. translators: 1: the word all or the word any, 2: product list
+#: includes/class-wfg-rules.php:319
+msgid "Cart contains %1$s of: %2$s"
+msgstr ""
+
+#. translators: 1: the word all or the word any, 2: product list
+#: includes/class-wfg-rules.php:320
+msgid "any"
+msgstr ""
+
+#. translators: 1: the word all or the word any, 2: product list
+#: includes/class-wfg-rules.php:320
+msgid "all"
+msgstr ""
+
+#. translators: %s: category list
+#: includes/class-wfg-rules.php:331
+msgid "Cart contains a product from: %s"
+msgstr ""
+
+#. translators: %s: category list
+#: includes/class-wfg-rules.php:334
+msgid "Cart contains a bundle product"
+msgstr ""
+
+#. translators: %d: item count
+#: includes/class-wfg-rules.php:338
+msgid "At least %d items in cart"
+msgstr ""
+
+#. translators: %d: item count
+#: includes/class-wfg-rules.php:341
+msgid "Always (no conditions)"
+msgstr ""
+
+#: includes/class-wfg-settings.php:39
+msgid "Free"
+msgstr ""
+
+#: includes/class-wfg-settings.php:47
+msgid "Add {remaining} more to your cart to get {gift} for free!"
+msgstr ""
+
+#: includes/class-wfg-settings.php:48
+msgid "🎉 You unlocked {gift} – it has been added to your cart for free."
+msgstr ""
+
+#: includes/class-wfg-settings.php:49
+msgid "Pick your free gift:"
+msgstr ""
+
+#: includes/class-wfg-settings.php:50
+msgid "🎁 Free gift: {gift} from {threshold} order value."
+msgstr ""
+
+#: includes/class-wfg-settings.php:60
+msgid "Free gifts waiting for you 🎁"
+msgstr ""
+
+#: includes/class-wfg-settings.php:61
+msgid "Reach the order value below and we add a gift to your cart automatically."
+msgstr ""
+
+#: includes/class-wfg-settings.php:62
+msgid "Continue shopping"
+msgstr ""
+
+#: templates/popup.php:23
+msgid "Close"
+msgstr ""
+
+#: templates/progress-box.php:70
+msgid "Selected"
+msgstr ""
+
+#: templates/progress-box.php:70
+msgid "Choose"
+msgstr ""
+
+#. translators: 1: required PHP version, 2: current PHP version
+#: woo-free-gifts.php:50
+msgid "Woo Free Gifts requires PHP %1$s or newer. You are running PHP %2$s. The plugin stays inactive."
+msgstr ""
+
+#: woo-free-gifts.php:88
+msgid "Woo Free Gifts requires WooCommerce to be installed and active. The plugin stays inactive until WooCommerce is available."
+msgstr ""
+
+#. translators: 1: required WooCommerce version, 2: current WooCommerce version
+#: woo-free-gifts.php:106
+msgid "Woo Free Gifts requires WooCommerce %1$s or newer. You are running %2$s. The plugin stays inactive."
+msgstr ""
