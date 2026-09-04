@@ -125,6 +125,7 @@ final class WFG_Admin {
 					'chooseImage'   => __( 'Choose gift image', 'woo-free-gifts' ),
 					'useImage'      => __( 'Use this image', 'woo-free-gifts' ),
 					'removeRow'     => __( 'Remove', 'woo-free-gifts' ),
+					'minSegments'   => __( 'The wheel needs at least 2 segments.', 'woo-free-gifts' ),
 				),
 			)
 		);
@@ -153,7 +154,7 @@ final class WFG_Admin {
 	 */
 	private function current_tab() {
 		$tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'rules'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		return in_array( $tab, array( 'rules', 'settings', 'popup', 'stats' ), true ) ? $tab : 'rules';
+		return in_array( $tab, array( 'rules', 'settings', 'popup', 'wheel', 'stats' ), true ) ? $tab : 'rules';
 	}
 
 	/**
@@ -219,7 +220,9 @@ final class WFG_Admin {
 				$view          = 'rules-list';
 			}
 		} elseif ( 'stats' === $tab ) {
-			$data['stats'] = WFG_Order::stats();
+			$data['stats']       = WFG_Order::stats();
+			$data['wheel_stats'] = WFG_Wheel::stats();
+			$data['wheel_log']   = WFG_Wheel::log_entries();
 		}
 
 		echo '<div class="wrap wfg-wrap">';
@@ -244,6 +247,7 @@ final class WFG_Admin {
 			'rules'    => __( 'Gift rules', 'woo-free-gifts' ),
 			'settings' => __( 'Settings', 'woo-free-gifts' ),
 			'popup'    => __( 'Popup', 'woo-free-gifts' ),
+			'wheel'    => __( 'Wheel of fortune', 'woo-free-gifts' ),
 			'stats'    => __( 'Statistics', 'woo-free-gifts' ),
 		);
 		echo '<nav class="nav-tab-wrapper woo-nav-tab-wrapper wfg-tabs">';
@@ -594,10 +598,16 @@ final class WFG_Admin {
 
 		// Tabs post only their own fields; everything else keeps its stored value.
 		$merged = array_merge( $stored, $posted );
+
+		// Fewer than two valid wheel segments keep the previously stored wheel instead of resetting it.
+		if ( isset( $posted['wheel_segments'] ) ) {
+			$previous                 = isset( $stored['wheel_segments'] ) && is_array( $stored['wheel_segments'] ) ? $stored['wheel_segments'] : WFG_Settings::default_segments();
+			$merged['wheel_segments'] = WFG_Settings::sanitize_segments( $posted['wheel_segments'], $previous );
+		}
 		$this->settings->save( $merged );
 
 		$tab = isset( $_POST['wfg_tab'] ) ? sanitize_key( $_POST['wfg_tab'] ) : 'settings'; // phpcs:ignore WordPress.Security.NonceVerification -- verified in guard().
-		$this->redirect( self::url( in_array( $tab, array( 'settings', 'popup' ), true ) ? $tab : 'settings' ), 'settings' );
+		$this->redirect( self::url( in_array( $tab, array( 'settings', 'popup', 'wheel' ), true ) ? $tab : 'settings' ), 'settings' );
 	}
 
 	/**
@@ -606,6 +616,7 @@ final class WFG_Admin {
 	public function handle_reset_stats() {
 		$this->guard( 'wfg_reset_stats', 'GET' );
 		WFG_Order::reset_stats();
+		WFG_Wheel::reset();
 		$this->redirect( self::url( 'stats' ), 'stats' );
 	}
 

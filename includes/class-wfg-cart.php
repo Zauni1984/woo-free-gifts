@@ -167,8 +167,36 @@ final class WFG_Cart {
 			}
 		}
 
-		$desired = array(); // Keyed by gift id, each entry holds rule, product and qty.
-		if ( $this->settings->enabled() && ! $this->cart_has_only_gifts( $cart ) ) {
+		$desired  = array(); // Keyed by gift id, each entry holds rule, product and qty.
+		$has_paid = ! $this->cart_has_only_gifts( $cart );
+
+		// Prizes won on the wheel of fortune (rule id 0) ride along as long as there are paid items.
+		if ( $has_paid && $this->settings->is( 'wheel_enabled' ) ) {
+			foreach ( WFG_Wheel::pending_gifts() as $pid => $expires ) {
+				$gifts = $this->engine->available_gifts(
+					array(
+						'gift_mode' => 'auto',
+						'gifts'     => array(
+							array(
+								'product_id' => (int) $pid,
+								'qty'        => 1,
+								'custom'     => WFG_Gift_Products::is_custom_gift( (int) $pid ),
+							),
+						),
+					)
+				);
+				if ( empty( $gifts ) ) {
+					continue;
+				}
+				$desired[ $this->gift_id( 0, $pid ) ] = array(
+					'rule'    => self::wheel_rule(),
+					'product' => $gifts[0]['product'],
+					'qty'     => 1,
+				);
+			}
+		}
+
+		if ( $this->settings->enabled() && $has_paid ) {
 			$winners   = $this->engine->winning_rules( $cart );
 			$dismissed = $this->session_get( self::SESSION_DISMISSED );
 			$choices   = $this->session_get( self::SESSION_CHOICE );
@@ -398,6 +426,21 @@ final class WFG_Cart {
 		return (int) $rule_id . ':' . (int) $product_id;
 	}
 
+	/**
+	 * Pseudo rule (id 0) used for wheel-of-fortune prizes.
+	 *
+	 * @return array
+	 */
+	public static function wheel_rule() {
+		return wp_parse_args(
+			array(
+				'id'    => 0,
+				'title' => __( 'Wheel of fortune prize', 'woo-free-gifts' ),
+			),
+			WFG_Rules::defaults()
+		);
+	}
+
 	// --- Customer choice / dismissal ---
 
 	/**
@@ -476,6 +519,12 @@ final class WFG_Cart {
 		}
 		$rule_id = (int) $item['wfg_gift']['rule_id'];
 		$pid     = (int) $item['wfg_gift']['product_id'];
+
+		if ( 0 === $rule_id ) {
+			// Wheel prize: removing it forfeits the prize.
+			WFG_Wheel::forget_gift( $pid );
+			return;
+		}
 
 		$dismissed                     = $this->session_get( self::SESSION_DISMISSED );
 		$dismissed[ $rule_id ][ $pid ] = true;
@@ -668,7 +717,7 @@ final class WFG_Cart {
 		if ( ! WFG_Engine::is_gift_item( $item ) ) {
 			return $data;
 		}
-		$rule  = $this->engine->rules()->get( $item['wfg_gift']['rule_id'] );
+		$rule  = 0 === (int) $item['wfg_gift']['rule_id'] ? self::wheel_rule() : $this->engine->rules()->get( $item['wfg_gift']['rule_id'] );
 		$title = $rule ? $rule['title'] : '';
 		$badge = $this->settings->get( 'gift_badge' );
 		if ( '' === $badge ) {

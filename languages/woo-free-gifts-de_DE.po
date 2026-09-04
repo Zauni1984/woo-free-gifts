@@ -30,93 +30,101 @@ msgstr "Geschenkbild auswählen"
 msgid "Use this image"
 msgstr "Dieses Bild verwenden"
 
-#: includes/admin/class-wfg-admin.php:127 includes/admin/views/rule-edit.php:51
+#: includes/admin/class-wfg-admin.php:127 includes/admin/views/rule-edit.php:51 includes/admin/views/wheel.php:42
 msgid "Remove"
 msgstr "Entfernen"
 
-#: includes/admin/class-wfg-admin.php:142
+#: includes/admin/class-wfg-admin.php:128
+msgid "The wheel needs at least 2 segments."
+msgstr "Das Glücksrad braucht mindestens 2 Segmente."
+
+#: includes/admin/class-wfg-admin.php:143
 msgid "Free gift (hidden)"
 msgstr "Gratis-Geschenk (versteckt)"
 
-#: includes/admin/class-wfg-admin.php:196
+#: includes/admin/class-wfg-admin.php:197
 msgid "You do not have permission to access this page."
 msgstr "Du hast keine Berechtigung für diese Seite."
 
-#: includes/admin/class-wfg-admin.php:213
+#: includes/admin/class-wfg-admin.php:214
 msgid "Rule not found."
 msgstr "Regel nicht gefunden."
 
-#: includes/admin/class-wfg-admin.php:226
+#: includes/admin/class-wfg-admin.php:229
 msgid "Woo Free Gifts"
 msgstr "Woo Free Gifts"
 
-#: includes/admin/class-wfg-admin.php:228
+#: includes/admin/class-wfg-admin.php:231
 msgid "Add rule"
 msgstr "Regel hinzufügen"
 
-#: includes/admin/class-wfg-admin.php:244
+#: includes/admin/class-wfg-admin.php:247
 msgid "Gift rules"
 msgstr "Geschenkregeln"
 
 #. translators: %s: settings link
-#: includes/admin/class-wfg-admin.php:245 includes/admin/views/rule-edit.php:186 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:139
+#: includes/admin/class-wfg-admin.php:248 includes/admin/views/rule-edit.php:186 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:147
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: includes/admin/class-wfg-admin.php:246 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:306
+#: includes/admin/class-wfg-admin.php:249 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:306
 msgid "Popup"
 msgstr "Popup"
 
-#: includes/admin/class-wfg-admin.php:247
+#: includes/admin/class-wfg-admin.php:250 includes/admin/views/stats.php:69 includes/admin/views/wheel.php:80
+msgid "Wheel of fortune"
+msgstr "Glücksrad"
+
+#: includes/admin/class-wfg-admin.php:251
 msgid "Statistics"
 msgstr "Statistik"
 
-#: includes/admin/class-wfg-admin.php:287
+#: includes/admin/class-wfg-admin.php:291
 msgid "Rule saved."
 msgstr "Regel gespeichert."
 
-#: includes/admin/class-wfg-admin.php:288
+#: includes/admin/class-wfg-admin.php:292
 msgid "Rule deleted."
 msgstr "Regel gelöscht."
 
-#: includes/admin/class-wfg-admin.php:289
+#: includes/admin/class-wfg-admin.php:293
 msgid "Rule duplicated. It is disabled until you enable it."
 msgstr "Regel dupliziert. Sie ist deaktiviert, bis du sie aktivierst."
 
-#: includes/admin/class-wfg-admin.php:290
+#: includes/admin/class-wfg-admin.php:294
 msgid "Rule updated."
 msgstr "Regel aktualisiert."
 
-#: includes/admin/class-wfg-admin.php:291
+#: includes/admin/class-wfg-admin.php:295
 msgid "Settings saved."
 msgstr "Einstellungen gespeichert."
 
-#: includes/admin/class-wfg-admin.php:292
+#: includes/admin/class-wfg-admin.php:296
 msgid "Statistics reset."
 msgstr "Statistik zurückgesetzt."
 
-#: includes/admin/class-wfg-admin.php:293
+#: includes/admin/class-wfg-admin.php:297
 msgid "The rule was not saved: add at least one gift."
 msgstr "Die Regel wurde nicht gespeichert: Füge mindestens ein Geschenk hinzu."
 
-#: includes/admin/class-wfg-admin.php:294
+#: includes/admin/class-wfg-admin.php:298
 msgid "Something went wrong. Please try again."
 msgstr "Etwas ist schiefgelaufen. Bitte versuche es erneut."
 
-#: includes/admin/class-wfg-admin.php:334
+#: includes/admin/class-wfg-admin.php:338
 msgid "You do not have permission to do this."
 msgstr "Du hast keine Berechtigung dafür."
 
-#: includes/admin/class-wfg-admin.php:380
+#: includes/admin/class-wfg-admin.php:384
 msgid "Gift rule"
 msgstr "Geschenkregel"
 
-#: includes/admin/class-wfg-admin.php:458
+#: includes/admin/class-wfg-admin.php:462
 msgid "Please pick a specific variation instead of the variable parent product."
 msgstr "Bitte wähle eine konkrete Variante statt des variablen Elternprodukts."
 
 #. translators: %s: original rule title
-#: includes/admin/class-wfg-admin.php:542
+#: includes/admin/class-wfg-admin.php:546
 msgid "%s (copy)"
 msgstr "%s (Kopie)"
 
@@ -132,15 +140,15 @@ msgstr "Ein leichtgewichtiges, cache-freundliches Popup, das Besucher über dein
 msgid "Enable the popup"
 msgstr "Popup aktivieren"
 
-#: includes/admin/views/popup.php:36
+#: includes/admin/views/popup.php:36 includes/admin/views/wheel.php:99
 msgid "Show on"
 msgstr "Anzeigen auf"
 
-#: includes/admin/views/popup.php:38
+#: includes/admin/views/popup.php:38 includes/admin/views/wheel.php:101
 msgid "Single product pages"
 msgstr "Einzelproduktseiten"
 
-#: includes/admin/views/popup.php:39
+#: includes/admin/views/popup.php:39 includes/admin/views/wheel.php:102
 msgid "Shop page and product categories / tags"
 msgstr "Shop-Seite und Produktkategorien / -schlagwörter"
 
@@ -168,7 +176,7 @@ msgstr "Bei jedem Seitenaufruf (zum Testen)"
 msgid "Days"
 msgstr "Tage"
 
-#: includes/admin/views/popup.php:52
+#: includes/admin/views/popup.php:52 includes/admin/views/wheel.php:112
 msgid "Delay (seconds)"
 msgstr "Verzögerung (Sekunden)"
 
@@ -176,7 +184,7 @@ msgstr "Verzögerung (Sekunden)"
 msgid "Changing title, text or offers shows the popup again to visitors who already dismissed it."
 msgstr "Wenn du Titel, Text oder Angebote änderst, sehen auch Besucher das Popup erneut, die es bereits geschlossen hatten."
 
-#: includes/admin/views/popup.php:57
+#: includes/admin/views/popup.php:57 includes/admin/views/wheel.php:131
 msgid "Title"
 msgstr "Titel"
 
@@ -228,7 +236,7 @@ msgstr "Button-Beschriftung"
 msgid "Optional link (empty = just close)"
 msgstr "Optionaler Link (leer = nur schließen)"
 
-#: includes/admin/views/popup.php:118 includes/admin/views/settings.php:124
+#: includes/admin/views/popup.php:118 includes/admin/views/settings.php:124 includes/admin/views/wheel.php:94
 msgid "Accent colour"
 msgstr "Akzentfarbe"
 
@@ -523,7 +531,7 @@ msgstr "Geschenk zum Bundle: das Bundle-Produkt unter „Pflichtprodukte“ eint
 msgid "Gifts are currently disabled globally. Enable them under %s."
 msgstr "Geschenke sind derzeit global deaktiviert. Aktiviere sie unter %s."
 
-#: includes/admin/views/rules-list.php:38 includes/admin/views/stats.php:25
+#: includes/admin/views/rules-list.php:38 includes/admin/views/stats.php:27
 msgid "Rule"
 msgstr "Regel"
 
@@ -687,7 +695,7 @@ msgstr "Warenkorb & Produktseite"
 msgid "Show progress bar"
 msgstr "Fortschrittsbalken anzeigen"
 
-#: includes/admin/views/settings.php:82
+#: includes/admin/views/settings.php:82 includes/admin/views/wheel.php:103
 msgid "Cart page"
 msgstr "Warenkorbseite"
 
@@ -763,42 +771,284 @@ msgstr "Alle Regeln, Einstellungen, Statistiken und versteckten Geschenkprodukte
 msgid "Save settings"
 msgstr "Einstellungen speichern"
 
-#: includes/admin/views/stats.php:19
+#: includes/admin/views/stats.php:21
 msgid "Gifts claimed"
 msgstr "Eingelöste Geschenke"
 
-#: includes/admin/views/stats.php:20
+#: includes/admin/views/stats.php:22
 msgid "orders with gifts in total"
 msgstr "Bestellungen mit Geschenken insgesamt"
 
-#: includes/admin/views/stats.php:26
+#: includes/admin/views/stats.php:28
 msgid "Orders"
 msgstr "Bestellungen"
 
-#: includes/admin/views/stats.php:27
+#: includes/admin/views/stats.php:29
 msgid "Last claimed"
 msgstr "Zuletzt eingelöst"
 
-#: includes/admin/views/stats.php:32
+#: includes/admin/views/stats.php:34
 msgid "No gifts have been claimed yet."
 msgstr "Es wurden noch keine Geschenke eingelöst."
 
 #. translators: %d: rule id
-#: includes/admin/views/stats.php:53
+#: includes/admin/views/stats.php:55
 msgid "Deleted rule #%d"
 msgstr "Gelöschte Regel #%d"
 
-#: includes/admin/views/stats.php:64
+#: includes/admin/views/stats.php:65
+msgid "Counts are recorded when an order is placed. Each order line also carries the gift rule as order item meta, so you can filter orders in reports."
+msgstr "Die Zahlen werden bei Bestellaufgabe erfasst. Jede Bestellposition trägt zudem die Geschenkregel als Positions-Meta, sodass du Bestellungen in Berichten filtern kannst."
+
+#: includes/admin/views/stats.php:71
+msgid "spins"
+msgstr "Drehungen"
+
+#: includes/admin/views/stats.php:72
+msgid "coupons won"
+msgstr "Gutscheine gewonnen"
+
+#: includes/admin/views/stats.php:73
+msgid "gifts won"
+msgstr "Geschenke gewonnen"
+
+#: includes/admin/views/stats.php:78
+msgid "Time"
+msgstr "Zeit"
+
+#: includes/admin/views/stats.php:79
+msgid "Visitor"
+msgstr "Besucher"
+
+#: includes/admin/views/stats.php:80
+msgid "Segment"
+msgstr "Segment"
+
+#: includes/admin/views/stats.php:81
+msgid "Result"
+msgstr "Ergebnis"
+
+#: includes/admin/views/stats.php:86
+msgid "No spins yet."
+msgstr "Noch keine Drehungen."
+
+#: includes/admin/views/stats.php:99
+msgid "Guest"
+msgstr "Gast"
+
+#: includes/admin/views/stats.php:109 includes/admin/views/wheel.php:34 includes/class-wfg-cart.php:724 includes/class-wfg-order.php:70 includes/class-wfg-order.php:83 includes/class-wfg-settings.php:38
+msgid "Free gift"
+msgstr "Gratis-Geschenk"
+
+#: includes/admin/views/stats.php:120
 msgid "Reset all statistics?"
 msgstr "Alle Statistiken zurücksetzen?"
 
-#: includes/admin/views/stats.php:64
+#: includes/admin/views/stats.php:120
 msgid "Reset statistics"
 msgstr "Statistik zurücksetzen"
 
-#: includes/admin/views/stats.php:66
-msgid "Counts are recorded when an order is placed. Each order line also carries the gift rule as order item meta, so you can filter orders in reports."
-msgstr "Die Zahlen werden bei Bestellaufgabe erfasst. Jede Bestellposition trägt zudem die Geschenkregel als Positions-Meta, sodass du Bestellungen in Berichten filtern kannst."
+#: includes/admin/views/wheel.php:30
+msgid "Segment colour"
+msgstr "Segmentfarbe"
+
+#: includes/admin/views/wheel.php:31
+msgid "Label on the wheel, e.g. 10 % off"
+msgstr "Beschriftung auf dem Rad, z. B. 10 % Rabatt"
+
+#: includes/admin/views/wheel.php:33
+msgid "Coupon"
+msgstr "Gutschein"
+
+#: includes/admin/views/wheel.php:35 includes/admin/views/wheel.php:147
+msgid "No prize"
+msgstr "Niete"
+
+#: includes/admin/views/wheel.php:38
+msgid "Weight"
+msgstr "Gewicht"
+
+#: includes/admin/views/wheel.php:47
+msgid "Percentage discount"
+msgstr "Prozentualer Rabatt"
+
+#. translators: %s: currency symbol
+#: includes/admin/views/wheel.php:48
+msgid "Fixed cart discount (%s)"
+msgstr "Fester Warenkorb-Rabatt (%s)"
+
+#. translators: %s: currency symbol
+#: includes/admin/views/wheel.php:52
+msgid "Amount"
+msgstr "Betrag"
+
+#: includes/admin/views/wheel.php:56
+msgid "or existing coupon code"
+msgstr "oder vorhandener Gutscheincode"
+
+#: includes/admin/views/wheel.php:57
+msgid "leave empty to generate unique codes"
+msgstr "leer lassen, um einmalige Codes zu erzeugen"
+
+#: includes/admin/views/wheel.php:61
+msgid "Search for the gift product…"
+msgstr "Geschenkprodukt suchen …"
+
+#: includes/admin/views/wheel.php:68
+msgid "Added to the cart for free with the next order (as long as the prize is valid). Hidden custom gifts from your rules can be used as well."
+msgstr "Wird bei der nächsten Bestellung gratis in den Warenkorb gelegt (solange der Gewinn gültig ist). Versteckte Custom-Geschenke aus deinen Regeln lassen sich ebenfalls verwenden."
+
+#: includes/admin/views/wheel.php:81
+msgid "Visitors spin once per cooldown window and win coupons or free gifts. The result is decided on the server and the cooldown is enforced via customer account, session, a signed cookie, the hashed IP address and the hashed e-mail address."
+msgstr "Besucher drehen einmal pro Sperrzeit und gewinnen Gutscheine oder Gratis-Geschenke. Das Ergebnis wird auf dem Server entschieden, die Sperrzeit gilt über Kundenkonto, Sitzung, ein signiertes Cookie, die gehashte IP-Adresse und die gehashte E-Mail-Adresse."
+
+#: includes/admin/views/wheel.php:84
+msgid "Wheel"
+msgstr "Glücksrad"
+
+#: includes/admin/views/wheel.php:85
+msgid "Enable the wheel of fortune"
+msgstr "Glücksrad aktivieren"
+
+#: includes/admin/views/wheel.php:88
+msgid "Style"
+msgstr "Stil"
+
+#: includes/admin/views/wheel.php:91
+msgid "420 / stoner – dark green, neon glow, hemp leaf, drifting smoke"
+msgstr "420 / Kiffer – dunkles Grün, Neon-Glow, Hanfblatt, ziehender Rauch"
+
+#: includes/admin/views/wheel.php:92
+msgid "Classic – clean white"
+msgstr "Klassisch – cleanes Weiß"
+
+#: includes/admin/views/wheel.php:104
+msgid "All other pages (front page, blog, …)"
+msgstr "Alle anderen Seiten (Startseite, Blog, …)"
+
+#: includes/admin/views/wheel.php:105
+msgid "Never shown on the checkout. Visitors who close the wheel without spinning do not see it again during their browser session."
+msgstr "Wird nie an der Kasse gezeigt. Wer das Rad schließt, ohne zu drehen, sieht es in dieser Browser-Sitzung nicht erneut."
+
+#: includes/admin/views/wheel.php:109
+msgid "Spin frequency"
+msgstr "Dreh-Häufigkeit"
+
+#: includes/admin/views/wheel.php:111
+msgid "One spin every"
+msgstr "Eine Drehung alle"
+
+#: includes/admin/views/wheel.php:111
+msgid "hours"
+msgstr "Stunden"
+
+#: includes/admin/views/wheel.php:113
+msgid "Also limit by (hashed) IP address"
+msgstr "Zusätzlich per (gehashter) IP-Adresse begrenzen"
+
+#: includes/admin/views/wheel.php:117
+msgid "E-mail capture"
+msgstr "E-Mail-Erfassung"
+
+#: includes/admin/views/wheel.php:119
+msgid "Guests must enter their e-mail address to spin (coupons are then bound to that address)"
+msgstr "Gäste müssen ihre E-Mail-Adresse eingeben, um zu drehen (Gutscheine sind dann an diese Adresse gebunden)"
+
+#: includes/admin/views/wheel.php:120
+msgid "E-mail field label"
+msgstr "Beschriftung des E-Mail-Felds"
+
+#: includes/admin/views/wheel.php:121
+msgid "Optional consent checkbox, e.g. \"I accept the terms and the privacy policy\" (empty = no checkbox)"
+msgstr "Optionale Zustimmungs-Checkbox, z. B. „Ich akzeptiere die Teilnahmebedingungen und die Datenschutzerklärung“ (leer = keine Checkbox)"
+
+#: includes/admin/views/wheel.php:128
+msgid "Texts"
+msgstr "Texte"
+
+#: includes/admin/views/wheel.php:135
+msgid "Intro text"
+msgstr "Einleitungstext"
+
+#: includes/admin/views/wheel.php:139
+msgid "Spin button"
+msgstr "Dreh-Button"
+
+#: includes/admin/views/wheel.php:143
+msgid "Result messages"
+msgstr "Ergebnistexte"
+
+#: includes/admin/views/wheel.php:145
+msgid "Coupon won"
+msgstr "Gutschein gewonnen"
+
+#: includes/admin/views/wheel.php:146
+msgid "Gift won"
+msgstr "Geschenk gewonnen"
+
+#: includes/admin/views/wheel.php:148
+msgid "Already spun"
+msgstr "Bereits gedreht"
+
+#: includes/admin/views/wheel.php:149
+msgid "Placeholders: {code}, {prize}, {days}, {hours}"
+msgstr "Platzhalter: {code}, {prize}, {days}, {hours}"
+
+#: includes/admin/views/wheel.php:156
+msgid "Coupons & gifts"
+msgstr "Gutscheine & Geschenke"
+
+#: includes/admin/views/wheel.php:159
+msgid "Coupon code prefix"
+msgstr "Präfix für Gutscheincodes"
+
+#: includes/admin/views/wheel.php:162
+msgid "Valid for"
+msgstr "Gültig für"
+
+#: includes/admin/views/wheel.php:162
+msgid "days (0 = no expiry)"
+msgstr "Tage (0 = kein Ablauf)"
+
+#: includes/admin/views/wheel.php:163
+msgid "Minimum order"
+msgstr "Mindestbestellwert"
+
+#: includes/admin/views/wheel.php:164
+msgid "Generated coupons are single-use (one use, one per customer) and excluded from gift lines. They appear under Marketing → Coupons."
+msgstr "Erzeugte Gutscheine sind einmalig nutzbar (eine Verwendung, einer pro Kunde) und gelten nicht für Geschenkpositionen. Sie erscheinen unter Marketing → Gutscheine."
+
+#: includes/admin/views/wheel.php:168
+msgid "Apply automatically"
+msgstr "Automatisch anwenden"
+
+#: includes/admin/views/wheel.php:169
+msgid "Apply a won coupon to the current cart right away"
+msgstr "Einen gewonnenen Gutschein sofort auf den aktuellen Warenkorb anwenden"
+
+#: includes/admin/views/wheel.php:172
+msgid "Gift validity"
+msgstr "Gültigkeit des Geschenks"
+
+#: includes/admin/views/wheel.php:173
+msgid "days – a won gift is added to the cart as soon as it contains paid items"
+msgstr "Tage – ein gewonnenes Geschenk wird in den Warenkorb gelegt, sobald er bezahlte Artikel enthält"
+
+#: includes/admin/views/wheel.php:179
+msgid "Segments"
+msgstr "Segmente"
+
+#: includes/admin/views/wheel.php:180
+msgid "Between 2 and 12 segments. The weight sets the probability (weight ÷ sum of all weights). A gift segment whose product is out of stock is skipped automatically."
+msgstr "Zwischen 2 und 12 Segmente. Das Gewicht bestimmt die Wahrscheinlichkeit (Gewicht ÷ Summe aller Gewichte). Ein Geschenk-Segment, dessen Produkt ausverkauft ist, wird automatisch übersprungen."
+
+#: includes/admin/views/wheel.php:190
+msgid "+ Add segment"
+msgstr "+ Segment hinzufügen"
+
+#: includes/admin/views/wheel.php:193
+msgid "Save wheel"
+msgstr "Glücksrad speichern"
 
 #: includes/class-wfg-ajax.php:59
 msgid "Gifts are currently disabled."
@@ -808,7 +1058,7 @@ msgstr "Geschenke sind derzeit deaktiviert."
 msgid "Invalid request."
 msgstr "Ungültige Anfrage."
 
-#: includes/class-wfg-ajax.php:72 includes/class-wfg-frontend.php:85
+#: includes/class-wfg-ajax.php:72 includes/class-wfg-frontend.php:85 includes/class-wfg-wheel.php:188
 msgid "Something went wrong. Please reload the page."
 msgstr "Etwas ist schiefgelaufen. Bitte lade die Seite neu."
 
@@ -816,27 +1066,27 @@ msgstr "Etwas ist schiefgelaufen. Bitte lade die Seite neu."
 msgid "Your gift has been added to the cart."
 msgstr "Dein Geschenk wurde in den Warenkorb gelegt."
 
-#: includes/class-wfg-cart.php:415
+#: includes/class-wfg-cart.php:438 includes/class-wfg-wheel.php:372
+msgid "Wheel of fortune prize"
+msgstr "Glücksrad-Gewinn"
+
+#: includes/class-wfg-cart.php:458
 msgid "Your cart is not available."
 msgstr "Dein Warenkorb ist nicht verfügbar."
 
-#: includes/class-wfg-cart.php:420
+#: includes/class-wfg-cart.php:463
 msgid "Your cart does not qualify for this gift (yet)."
 msgstr "Dein Warenkorb erfüllt die Bedingungen für dieses Geschenk (noch) nicht."
 
-#: includes/class-wfg-cart.php:431
+#: includes/class-wfg-cart.php:474
 msgid "This gift is not available."
 msgstr "Dieses Geschenk ist nicht verfügbar."
-
-#: includes/class-wfg-cart.php:675 includes/class-wfg-order.php:70 includes/class-wfg-order.php:83 includes/class-wfg-settings.php:38
-msgid "Free gift"
-msgstr "Gratis-Geschenk"
 
 #: includes/class-wfg-engine.php:456
 msgid "or"
 msgstr "oder"
 
-#: includes/class-wfg-frontend.php:307
+#: includes/class-wfg-frontend.php:308
 msgid "Security check failed. Please try again."
 msgstr "Sicherheitsprüfung fehlgeschlagen. Bitte versuche es erneut."
 
@@ -939,7 +1189,79 @@ msgstr "Erreiche den unten genannten Bestellwert und wir legen dir automatisch e
 msgid "Continue shopping"
 msgstr "Weiter einkaufen"
 
-#: templates/popup.php:23
+#: includes/class-wfg-settings.php:77
+msgid "Spin the wheel, buddy 🍃"
+msgstr "Dreh am Rad, Digga 🍃"
+
+#: includes/class-wfg-settings.php:78
+msgid "One free spin a day. Win coupons and free goodies – no strings attached."
+msgstr "Eine Gratis-Drehung pro Tag. Gewinn Gutscheine und Goodies – ohne Haken."
+
+#: includes/class-wfg-settings.php:79
+msgid "Spin it 🔥"
+msgstr "Dreh durch 🔥"
+
+#: includes/class-wfg-settings.php:81
+msgid "Your e-mail address"
+msgstr "Deine E-Mail-Adresse"
+
+#: includes/class-wfg-settings.php:89
+msgid "Dope! Your code {code} gets you {prize}. Valid for {days} days."
+msgstr "Dope! Mit dem Code {code} bekommst du {prize}. Gültig für {days} Tage."
+
+#: includes/class-wfg-settings.php:90
+msgid "Jackpot! {prize} lands in your cart for free with your next order."
+msgstr "Jackpot! {prize} landet bei deiner nächsten Bestellung gratis im Warenkorb."
+
+#: includes/class-wfg-settings.php:91
+msgid "Not this time, mate. Chill and come back tomorrow."
+msgstr "Diesmal nicht, Digga. Chill und komm morgen wieder."
+
+#: includes/class-wfg-settings.php:92
+msgid "You already spun today. Next spin in {hours} h."
+msgstr "Du hast heute schon gedreht. Nächste Drehung in {hours} h."
+
+#: includes/class-wfg-settings.php:110
+msgid "10 % off"
+msgstr "10 % Rabatt"
+
+#: includes/class-wfg-settings.php:120
+msgid "Try again 🌱"
+msgstr "Nochmal probieren 🌱"
+
+#: includes/class-wfg-settings.php:130
+msgid "5 € off"
+msgstr "5 € Rabatt"
+
+#: includes/class-wfg-settings.php:140
+msgid "Free gift 🎁"
+msgstr "Gratis-Geschenk 🎁"
+
+#: includes/class-wfg-settings.php:150
+msgid "Puff, puff, pass 💨"
+msgstr "Puff, puff, pass 💨"
+
+#: includes/class-wfg-settings.php:160
+msgid "20 % off 🔥"
+msgstr "20 % Rabatt 🔥"
+
+#: includes/class-wfg-wheel.php:167 includes/class-wfg-wheel.php:221
+msgid "The wheel is currently not available."
+msgstr "Das Glücksrad ist gerade nicht verfügbar."
+
+#: includes/class-wfg-wheel.php:177
+msgid "Please enter a valid e-mail address."
+msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
+
+#: includes/class-wfg-wheel.php:181
+msgid "Please accept the terms to spin."
+msgstr "Bitte akzeptiere die Bedingungen, um zu drehen."
+
+#: includes/class-wfg-wheel.php:244
+msgid "Something went wrong while creating your coupon. Please contact us."
+msgstr "Beim Erstellen deines Gutscheins ist etwas schiefgelaufen. Bitte melde dich bei uns."
+
+#: templates/popup.php:23 templates/wheel.php:41
 msgid "Close"
 msgstr "Schließen"
 
@@ -950,6 +1272,18 @@ msgstr "Ausgewählt"
 #: templates/progress-box.php:70
 msgid "Choose"
 msgstr "Auswählen"
+
+#: templates/wheel.php:91
+msgid "Copied!"
+msgstr "Kopiert!"
+
+#: templates/wheel.php:91
+msgid "Copy code"
+msgstr "Code kopieren"
+
+#: templates/wheel.php:94
+msgid "Keep shopping"
+msgstr "Weiter shoppen"
 
 #. translators: 1: required PHP version, 2: current PHP version
 #: woo-free-gifts.php:50

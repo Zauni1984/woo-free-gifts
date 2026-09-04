@@ -190,8 +190,218 @@
 		window.location.reload();
 	}
 
+	/* -----------------------------------------------------------------
+	 * Wheel of fortune
+	 * -------------------------------------------------------------- */
+	function initWheel() {
+		var el = document.getElementById( 'wfg-wheel' );
+		if ( ! el || typeof wfgData === 'undefined' ) {
+			return;
+		}
+
+		var config;
+		try {
+			config = JSON.parse( el.getAttribute( 'data-wfg-wheel' ) || '{}' );
+		} catch ( e ) {
+			config = {};
+		}
+
+		var nextKey = 'wfg_wheel_next';
+		var dismissKey = 'wfg_wheel_dismissed_' + ( config.version || 'v1' );
+		var now = Date.now();
+		var next = Math.max( ( parseInt( config.nextSpin, 10 ) || 0 ) * 1000, parseInt( storageGet( 'localStorage', nextKey ), 10 ) || 0 );
+
+		if ( next > now || storageGet( 'sessionStorage', dismissKey ) === '1' ) {
+			el.parentNode.removeChild( el );
+			return;
+		}
+
+		var dialog = el.querySelector( '.wfg-wheel__dialog' );
+		var disc = el.querySelector( '.wfg-wheel__disc' );
+		var form = el.querySelector( '.wfg-wheel__form' );
+		var spinBtn = el.querySelector( '.wfg-wheel__spin' );
+		var error = el.querySelector( '.wfg-wheel__error' );
+		var result = el.querySelector( '.wfg-wheel__result' );
+		var segments = Math.max( 1, parseInt( config.segments, 10 ) || 1 );
+		var segmentAngle = 360 / segments;
+		var rotation = 0;
+		var spinning = false;
+		var done = false;
+		var lastFocus = null;
+
+		function showError( msg ) {
+			error.textContent = msg || wfgData.i18n.error;
+			error.hidden = false;
+		}
+
+		function close() {
+			if ( el.hidden ) {
+				return;
+			}
+			if ( spinning ) {
+				return; // Never interrupt a running spin.
+			}
+			el.hidden = true;
+			document.removeEventListener( 'keydown', onKey );
+			if ( ! done ) {
+				storageSet( 'sessionStorage', dismissKey, '1' );
+			}
+			if ( lastFocus && lastFocus.focus ) {
+				lastFocus.focus();
+			}
+		}
+
+		function onKey( e ) {
+			if ( e.key === 'Escape' ) {
+				close();
+			}
+		}
+
+		function open() {
+			lastFocus = document.activeElement;
+			el.hidden = false;
+			document.addEventListener( 'keydown', onKey );
+			window.setTimeout( function () {
+				var first = el.querySelector( 'input[type="email"]' ) || spinBtn || dialog;
+				first.focus();
+			}, 60 );
+			$( document.body ).trigger( 'wfg_wheel_opened' );
+		}
+
+		function showResult( data ) {
+			done = true;
+			el.classList.remove( 'is-spinning' );
+			el.classList.add( 'is-done' );
+			result.querySelector( '.wfg-wheel__result-label' ).textContent = data.label || '';
+			result.querySelector( '.wfg-wheel__result-message' ).textContent = data.message || '';
+			var codeWrap = result.querySelector( '.wfg-wheel__result-code' );
+			if ( data.code ) {
+				codeWrap.querySelector( 'code' ).textContent = data.code;
+				codeWrap.hidden = false;
+			} else {
+				codeWrap.hidden = true;
+			}
+			result.hidden = false;
+			$( document.body ).trigger( 'wc_fragment_refresh' );
+			if ( $( '.woocommerce-cart-form' ).length ) {
+				$( document.body ).trigger( 'wc_update_cart' );
+			}
+			$( document.body ).trigger( 'wfg_wheel_result', [ data ] );
+		}
+
+		function spinTo( data ) {
+			spinning = true;
+			el.classList.add( 'is-spinning' );
+			var index = parseInt( data.index, 10 ) || 0;
+			var center = index * segmentAngle + segmentAngle / 2;
+			var jitter = ( Math.random() - 0.5 ) * segmentAngle * 0.6;
+			var turns = 6 + Math.floor( Math.random() * 3 );
+			var target = turns * 360 + ( 360 - center ) + jitter;
+			rotation += target - ( rotation % 360 );
+			var finished = false;
+			function finish() {
+				if ( finished ) {
+					return;
+				}
+				finished = true;
+				spinning = false;
+				showResult( data );
+			}
+			disc.addEventListener( 'transitionend', finish, { once: true } );
+			window.setTimeout( finish, 6200 );
+			// Force a reflow so the transition always runs.
+			void disc.offsetWidth;
+			disc.style.transform = 'rotate(' + rotation + 'deg)';
+		}
+
+		form.addEventListener( 'submit', function ( e ) {
+			e.preventDefault();
+			if ( spinning || done ) {
+				return;
+			}
+			error.hidden = true;
+
+			var emailField = form.querySelector( 'input[type="email"]' );
+			var consentField = form.querySelector( 'input[name="consent"]' );
+			if ( emailField && ! emailField.checkValidity() ) {
+				emailField.reportValidity();
+				return;
+			}
+			if ( consentField && ! consentField.checked ) {
+				consentField.reportValidity();
+				return;
+			}
+
+			spinBtn.disabled = true;
+			$.ajax( {
+				url: wfgData.ajaxUrl,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					action: 'wfg_wheel_spin',
+					nonce: wfgData.nonce,
+					email: emailField ? emailField.value : '',
+					consent: consentField && consentField.checked ? 1 : 0
+				}
+			} )
+				.done( function ( response ) {
+					if ( ! response || ! response.success ) {
+						var payload = response && response.data ? response.data : {};
+						if ( payload.nextSpin ) {
+							storageSet( 'localStorage', nextKey, String( payload.nextSpin * 1000 ) );
+						}
+						showError( payload.message );
+						spinBtn.disabled = false;
+						return;
+					}
+					if ( response.data.nextSpin ) {
+						storageSet( 'localStorage', nextKey, String( response.data.nextSpin * 1000 ) );
+					}
+					spinTo( response.data );
+				} )
+				.fail( function ( xhr ) {
+					var payload = xhr && xhr.responseJSON && xhr.responseJSON.data ? xhr.responseJSON.data : {};
+					if ( payload.nextSpin ) {
+						storageSet( 'localStorage', nextKey, String( payload.nextSpin * 1000 ) );
+					}
+					showError( payload.message );
+					spinBtn.disabled = false;
+				} );
+		} );
+
+		var copyBtn = el.querySelector( '.wfg-wheel__copy' );
+		if ( copyBtn ) {
+			copyBtn.addEventListener( 'click', function () {
+				var code = el.querySelector( '.wfg-wheel__result-code code' ).textContent;
+				var label = copyBtn.textContent;
+				function ok() {
+					copyBtn.textContent = copyBtn.getAttribute( 'data-copied' ) || label;
+					window.setTimeout( function () { copyBtn.textContent = label; }, 1800 );
+				}
+				if ( navigator.clipboard && navigator.clipboard.writeText ) {
+					navigator.clipboard.writeText( code ).then( ok, function () {} );
+				} else {
+					var ta = document.createElement( 'textarea' );
+					ta.value = code;
+					document.body.appendChild( ta );
+					ta.select();
+					try { document.execCommand( 'copy' ); ok(); } catch ( err ) { /* ignore */ }
+					document.body.removeChild( ta );
+				}
+			} );
+		}
+
+		Array.prototype.forEach.call( el.querySelectorAll( '[data-wfg-wheel-close]' ), function ( btn ) {
+			btn.addEventListener( 'click', close );
+		} );
+
+		var delay = Math.max( 0, parseInt( config.delay, 10 ) || 0 ) * 1000;
+		window.setTimeout( open, delay );
+	}
+
 	$( function () {
 		initPopup();
 		initChoice();
+		initWheel();
 	} );
 }( jQuery ) );

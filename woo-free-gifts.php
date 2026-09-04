@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Woo Free Gifts Premium
  * Plugin URI:        https://github.com/zauni1984/woo-free-gifts
- * Description:       Premium free gift engine for WooCommerce: cart value thresholds, buy-X-get-gift bundles, custom (non-catalog) gifts, gift choice, progress bar and a one-time promo popup.
+ * Description:       Premium free gift engine for WooCommerce: cart value thresholds, buy-X-get-gift bundles, custom (non-catalog) gifts, gift choice, progress bar, promo popup and a daily wheel of fortune.
  * Version:           1.0.0
  * Author:            Stefan Zaunreither
  * Author URI:        https://github.com/zauni1984

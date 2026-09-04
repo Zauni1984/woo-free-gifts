@@ -76,6 +76,13 @@ final class WFG_Plugin {
 	public $popup;
 
 	/**
+	 * Wheel of fortune.
+	 *
+	 * @var WFG_Wheel
+	 */
+	public $wheel;
+
+	/**
 	 * Get singleton.
 	 *
 	 * @return WFG_Plugin
@@ -103,6 +110,7 @@ final class WFG_Plugin {
 		$this->order         = new WFG_Order( $this->settings, $this->rules );
 		$this->frontend      = new WFG_Frontend( $this->settings, $this->engine, $this->cart );
 		$this->popup         = new WFG_Popup( $this->settings, $this->rules, $this->engine );
+		$this->wheel         = new WFG_Wheel( $this->settings, $this->engine );
 
 		new WFG_Ajax( $this->settings, $this->engine, $this->cart );
 		new WFG_Shortcodes( $this->frontend );

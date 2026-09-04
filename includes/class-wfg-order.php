@@ -64,7 +64,7 @@ final class WFG_Order {
 			return;
 		}
 		$rule_id = (int) $values['wfg_gift']['rule_id'];
-		$rule    = $this->rules->get( $rule_id );
+		$rule    = 0 === $rule_id ? WFG_Cart::wheel_rule() : $this->rules->get( $rule_id );
 
 		$item->add_meta_data( self::ITEM_META_RULE, $rule_id, true );
 		$item->add_meta_data( self::ITEM_META_LABEL, $rule && '' !== $rule['title'] ? $rule['title'] : __( 'Free gift', 'woo-free-gifts' ), true );
@@ -126,9 +126,15 @@ final class WFG_Order {
 
 		$rule_ids = array();
 		foreach ( $order->get_items( 'line_item' ) as $item ) {
+			if ( '' === (string) $item->get_meta( self::ITEM_META_RULE ) ) {
+				continue;
+			}
 			$rule_id = (int) $item->get_meta( self::ITEM_META_RULE );
 			if ( $rule_id > 0 ) {
 				$rule_ids[] = $rule_id;
+			} else {
+				// Wheel prize: consumed with this order.
+				WFG_Wheel::forget_gift( $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id() );
 			}
 		}
 

@@ -36,6 +36,14 @@ Produkte **innerhalb** von Bundles zählen für Produkt- und Kategoriebedingunge
 - Shortcodes `[wfg_progress]` und `[wfg_gift_list]`.
 - Klassischer und Block-Warenkorb/-Kasse (Menge via Store API gesperrt).
 
+### Glücksrad 🎡
+
+- Popup-Glücksrad im **420/Kiffer-Style** (dunkles Grün, Neon-Glow, Hanfblatt in der Mitte, ziehender Rauch, lockere Sprüche) oder klassisch weiß, Akzentfarbe frei wählbar.
+- **Eine Drehung pro Tag** (Sperrzeit in Stunden einstellbar). Die Sperre gilt serverseitig über Kundenkonto, WooCommerce-Session, signiertes Cookie, gehashte IP und gehashte E-Mail – der Browser animiert nur das Ergebnis, der Gewinn wird auf dem Server ausgewürfelt.
+- 2–12 Segmente mit Farbe, Beschriftung und Gewicht (Wahrscheinlichkeit). Segment-Typen: **Gutschein** (Prozent oder fester Betrag, automatisch erzeugte einmalige Codes mit Präfix, Ablauf, Mindestbestellwert, optional an E-Mail gebunden, auf Wunsch sofort angewendet), **Geschenk** (Produkt oder Custom-Geschenk, landet mit der nächsten Bestellung gratis im Warenkorb) oder **Niete**.
+- Optionale E-Mail-Erfassung mit Zustimmungs-Checkbox, Anzeige auf Produkt-, Archiv-, Warenkorb- und/oder allen anderen Seiten (nie an der Kasse).
+- Statistik mit Drehungen, Gewinnen und Spin-Log unter WooCommerce → Free Gifts → Statistik.
+
 ### Sicherheit & Stabilität
 
 - Versionsprüfung für PHP und WooCommerce, ohne WooCommerce bleibt das Plugin inaktiv (kein Fatal Error).
@@ -75,6 +83,9 @@ Produkte **innerhalb** von Bundles zählen für Produkt- und Kategoriebedingunge
 | `wfg_order_recorded` | Action | Nach dem Erfassen der Geschenke einer Bestellung |
 | `wfg_popup_should_render` | Filter | Popup-Anzeige steuern |
 | `wfg_notify_on_unlock` | Filter | Erfolgsmeldung beim Freischalten unterdrücken |
+| `wfg_wheel_should_render` | Filter | Anzeige des Glücksrads steuern |
+| `wfg_wheel_next_allowed_spin` | Filter | Sperrzeit-Logik des Glücksrads erweitern |
+| `wfg_wheel_spun` | Action | Nach einer Glücksrad-Drehung (z. B. Newsletter-Anbindung) |
 
 ### Templates
 
@@ -96,6 +107,6 @@ GPL-2.0-or-later.
 Die Kernlogik (Regel-Engine, Warenkorb-Sync, Templates, Admin-Views) lässt sich ohne WordPress-Installation gegen Stubs testen:
 
 ```bash
-php tests/run.php      # 61 Funktionstests (Schwellen, Stacking, B+C, Bundles, Auswahl, Entfernen, Lager, Rollen …)
+php tests/run.php      # 83 Funktionstests (Schwellen, Stacking, B+C, Bundles, Auswahl, Entfernen, Lager, Rollen, Glücksrad …)
 php tests/render.php   # rendert alle Templates und Admin-Views und meldet PHP-Notices
 ```

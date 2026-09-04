@@ -27,9 +27,10 @@ if ( is_array( $wfg_gift_ids ) ) {
 }
 
 // Options.
-foreach ( array( 'wfg_settings', 'wfg_rules', 'wfg_rules_next_id', 'wfg_stats', 'wfg_custom_gift_ids', 'wfg_version' ) as $wfg_option ) {
+foreach ( array( 'wfg_settings', 'wfg_rules', 'wfg_rules_next_id', 'wfg_stats', 'wfg_custom_gift_ids', 'wfg_version', 'wfg_wheel_stats', 'wfg_wheel_log' ) as $wfg_option ) {
 	delete_option( $wfg_option );
 }
 
-// Per-customer claim tracking.
+// Per-customer claim tracking and wheel cooldowns.
 delete_metadata( 'user', 0, '_wfg_claimed_rules', '', true );
+delete_metadata( 'user', 0, '_wfg_wheel_next', '', true );

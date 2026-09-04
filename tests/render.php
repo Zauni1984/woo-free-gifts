@@ -49,6 +49,12 @@ render( 'single hint', function () use ( $frontend ) { $frontend->output_single_
 function is_product() { return true; } function is_shop() { return false; } function is_product_taxonomy() { return false; } function is_feed() { return false; } function is_404() { return false; }
 $html = render( 'popup', function () use ( $popup ) { $popup->output(); } );
 if ( strpos( $html, 'data-wfg-popup' ) === false || strpos( $html, 'wfg-popup__offer' ) === false ) { echo "  ✗ popup missing config or offers\n"; $fail++; }
+$settings->save( array_merge( $settings->all(), array( 'wheel_enabled' => true, 'wheel_require_email' => true, 'wheel_consent_text' => 'I agree' ) ) );
+$wheel = new WFG_Wheel( $settings, $engine );
+$html = render( 'wheel (stoner)', function () use ( $wheel ) { $wheel->output(); } );
+if ( strpos( $html, 'conic-gradient' ) === false || strpos( $html, 'wfg-wheel__leaf' ) === false || substr_count( $html, 'wfg-wheel__label ' ) !== 6 ) { echo "  ✗ wheel markup incomplete\n"; $fail++; }
+$settings->save( array_merge( $settings->all(), array( 'wheel_theme' => 'classic' ) ) );
+render( 'wheel (classic)', function () use ( $wheel ) { $wheel->output(); } );
 render( 'gift list', function () use ( $popup ) { echo WFG_Helpers::template( 'gift-list', array( 'offers' => $popup->offers() ) ); } );
 
 echo "== Admin views ==\n";
@@ -61,7 +67,9 @@ render( 'rule-edit (choice rule)', function () use ( $view, $settings, $rules ) 
 render( 'rule-edit (new)', function () use ( $view, $settings, $rules ) { $rule = WFG_Rules::defaults(); $view( 'rule-edit', compact( 'settings', 'rules', 'rule' ) ); } );
 render( 'settings', function () use ( $view, $settings, $rules ) { $view( 'settings', compact( 'settings', 'rules' ) ); } );
 render( 'popup settings', function () use ( $view, $settings, $rules ) { $view( 'popup', compact( 'settings', 'rules' ) ); } );
-render( 'stats', function () use ( $view, $settings, $rules, $stats ) { $view( 'stats', compact( 'settings', 'rules', 'stats' ) ); } );
+$wheel_stats = WFG_Wheel::stats(); $wheel_log = array( array( 'time' => time(), 'user' => 0, 'email' => 'a@b.c', 'label' => '10 %', 'type' => 'coupon', 'code' => 'HIGH-ABC123' ), array( 'time' => time(), 'user' => 3, 'email' => '', 'label' => 'Gift', 'type' => 'gift', 'code' => '' ) );
+render( 'stats', function () use ( $view, $settings, $rules, $stats, $wheel_stats, $wheel_log ) { $view( 'stats', compact( 'settings', 'rules', 'stats', 'wheel_stats', 'wheel_log' ) ); } );
+render( 'wheel settings', function () use ( $view, $settings, $rules ) { $view( 'wheel', compact( 'settings', 'rules' ) ); } );
 
 echo "\n$ok ok, $fail failed\n";
 exit( $fail ? 1 : 0 );

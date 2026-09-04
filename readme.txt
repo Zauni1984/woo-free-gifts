@@ -10,7 +10,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Premium free gift engine for WooCommerce: cart value thresholds, buy-X-get-gift, bundles, custom (non-catalog) gifts, gift choice, progress bar and a one-time promo popup.
+Premium free gift engine for WooCommerce: cart value thresholds, buy-X-get-gift, bundles, custom (non-catalog) gifts, gift choice, progress bar, promo popup and a daily wheel of fortune.
 
 == Description ==
 
@@ -43,6 +43,13 @@ Woo Free Gifts adds gifts to the cart automatically when a rule matches – and 
 * One-time promo popup on product pages and product archives (session / X days / once / always), cache-friendly, accessible, keyboard closable
 * Shortcodes `[wfg_progress]` and `[wfg_gift_list]`
 * Compatible with the classic cart/checkout and the block cart/checkout (quantity locked via Store API)
+
+**Wheel of fortune**
+
+* Popup wheel in a 420 / stoner style (dark green, neon glow, hemp leaf, drifting smoke) or classic white
+* One spin per cooldown window, enforced server-side via account, session, signed cookie, hashed IP and hashed e-mail
+* 2–12 weighted segments: coupons (auto-generated single-use codes or existing codes), free gifts or "no prize"
+* Optional e-mail capture with consent checkbox, statistics and spin log
 
 **Safe by design**
 

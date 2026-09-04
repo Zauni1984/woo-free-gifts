@@ -179,6 +179,8 @@ class WC_Cart {
 	public function is_empty() { return empty( $this->cart_contents ); }
 	public function get_cart_item( $k ) { return $this->cart_contents[ $k ] ?? array(); }
 	public function get_applied_coupons() { return $this->coupons; }
+	public function has_discount( $c ) { return in_array( strtolower( $c ), $this->coupons, true ); }
+	public function apply_coupon( $c ) { if ( ! wc_get_coupon_id_by_code( $c ) ) { wc_add_notice( 'Coupon does not exist!', 'error' ); return false; } $this->coupons[] = strtolower( $c ); wc_add_notice( 'Coupon code applied successfully.', 'success' ); $this->calculate_totals(); return true; }
 	public function get_cart_item_quantities() { $q = array(); foreach ( $this->cart_contents as $i ) { $id = $i['data']->get_stock_managed_by_id(); $q[ $id ] = ( $q[ $id ] ?? 0 ) + $i['quantity']; } return $q; }
 	public function generate_cart_id( $pid, $vid = 0, $variation = array(), $data = array() ) { return md5( $pid . '_' . $vid . '_' . json_encode( $variation ) . '_' . json_encode( $data ) ); }
 	public function add_to_cart( $product_id = 0, $quantity = 1, $variation_id = 0, $variation = array(), $cart_item_data = array() ) {
@@ -269,3 +271,38 @@ function wp_date( $f, $ts ) { return date( $f, $ts ); }
 function wpautop( $t ) { return '<p>' . $t . '</p>'; }
 function wp_safe_redirect( $u ) { $GLOBALS['redirect'] = $u; }
 function get_object_taxonomies( $t ) { return array( 'product_cat', 'product_tag' ); }
+
+// ---------------------------------------------------------------------------
+// Wheel of fortune stubs
+// ---------------------------------------------------------------------------
+define( 'HOUR_IN_SECONDS', 3600 );
+define( 'DAY_IN_SECONDS', 86400 );
+$GLOBALS['transients'] = array();
+function get_transient( $k ) { if ( ! isset( $GLOBALS['transients'][ $k ] ) ) { return false; } list( $v, $exp ) = $GLOBALS['transients'][ $k ]; return $exp > time() ? $v : false; }
+function set_transient( $k, $v, $ttl = 0 ) { $GLOBALS['transients'][ $k ] = array( $v, time() + ( $ttl ?: 999999 ) ); return true; }
+function delete_transient( $k ) { unset( $GLOBALS['transients'][ $k ] ); return true; }
+function is_user_logged_in() { return get_current_user_id() > 0; }
+function sanitize_email( $e ) { return filter_var( trim( $e ), FILTER_SANITIZE_EMAIL ); }
+function is_email( $e ) { return (bool) filter_var( $e, FILTER_VALIDATE_EMAIL ); }
+function wp_salt( $s = '' ) { return 'test-salt-' . $s; }
+function wp_generate_password( $len = 12, $special = true, $extra = false ) { return substr( str_shuffle( 'abcdefghjkmnpqrstuvwxyz23456789' ), 0, $len ); }
+function is_ssl() { return false; }
+function wc_format_coupon_code( $c ) { return wc_strtolower( sanitize_text_field( $c ) ); }
+function wc_strtolower( $s ) { return strtolower( $s ); }
+function wc_get_page_permalink( $p ) { return 'https://example.test/shop/'; }
+function get_userdata( $id ) { return (object) array( 'display_name' => 'User ' . $id ); }
+function is_checkout() { return false; }
+function is_cart() { return $GLOBALS['is_cart'] ?? false; }
+$GLOBALS['coupons'] = array();
+function wc_get_coupon_id_by_code( $code ) { return isset( $GLOBALS['coupons'][ strtolower( $code ) ] ) ? $GLOBALS['coupons'][ strtolower( $code ) ]['id'] : 0; }
+class WC_Coupon {
+	public $d = array( 'meta' => array() );
+	public function __call( $name, $args ) {
+		if ( 0 === strpos( $name, 'set_' ) ) { $this->d[ substr( $name, 4 ) ] = $args[0]; return; }
+		if ( 0 === strpos( $name, 'get_' ) ) { return $this->d[ substr( $name, 4 ) ] ?? null; }
+		throw new BadMethodCallException( $name );
+	}
+	public function update_meta_data( $k, $v ) { $this->d['meta'][ $k ] = $v; }
+	public function save() { $this->d['id'] = count( $GLOBALS['coupons'] ) + 100; $GLOBALS['coupons'][ strtolower( $this->d['code'] ) ] = $this->d; return $this->d['id']; }
+}
+class WC_Geolocation { public static function get_ip_address() { return $GLOBALS['ip'] ?? '203.0.113.7'; } }

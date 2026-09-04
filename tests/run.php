@@ -263,5 +263,89 @@ ok( 1 === count( $data ) && 'Seed' === $data[0]['value'], 'item data carries rul
 $html = WFG_Helpers::placeholders( 'Add {remaining} to get {gift}', array( 'remaining' => '5 €', 'gift' => 'X' ) );
 ok( 'Add 5 € to get X' === $html, 'placeholders' );
 
+// ---------------------------------------------------------------------------
+section( 'Wheel of fortune' );
+function wheel_identity( $ip ) { $GLOBALS['ip'] = $ip; unset( $_COOKIE['wfg_wheel_next'] ); return fresh_cart(); }
+set_rules( array() );
+set_settings( array( 'wheel_enabled' => true, 'wheel_segments' => array(
+	array( 'label' => '10 %', 'type' => 'coupon', 'coupon_type' => 'percent', 'amount' => 10, 'weight' => 100, 'color' => '#111111' ),
+	array( 'label' => 'Nope', 'type' => 'none', 'weight' => 0, 'color' => '#222222' ),
+) ) );
+$wheel = new WFG_Wheel( $settings, $engine );
+$cart  = wheel_identity( '203.0.113.1' );
+$cart->add_to_cart( 1, 1 );
+$before = count( $GLOBALS['wc_notices'] );
+$res = $wheel->spin( '' );
+ok( ! is_wp_error( $res ) && 'coupon' === $res['type'] && 0 === $res['index'], 'weighted pick lands on the only weighted segment' );
+ok( preg_match( '/^HIGH-[A-Z0-9]{6}$/', $res['code'] ) === 1, 'unique coupon code generated: ' . $res['code'] );
+$c = $GLOBALS['coupons'][ strtolower( $res['code'] ) ];
+ok( 'percent' === $c['discount_type'] && 10.0 === (float) $c['amount'] && 1 === $c['usage_limit'] && 1 === $c['usage_limit_per_user'] && $c['date_expires'] > time(), 'coupon is single-use with expiry' );
+ok( $cart->has_discount( $res['code'] ), 'coupon auto-applied to the cart' );
+ok( count( $GLOBALS['wc_notices'] ) === $before, 'apply_coupon notices suppressed' );
+ok( false !== strpos( $res['message'], $res['code'] ) && $res['nextSpin'] > time() + 23 * 3600, 'win message + next spin in ~24h' );
+$again = $wheel->spin( '' );
+ok( is_wp_error( $again ) && 'wfg_wheel_cooldown' === $again->get_error_code(), 'second spin blocked (session)' );
+$cart = fresh_cart(); // new session, same IP
+ok( is_wp_error( $wheel->spin( '' ) ), 'new session, same IP: still blocked' );
+$cart = wheel_identity( '203.0.113.2' );
+$cart->add_to_cart( 1, 1 );
+ok( ! is_wp_error( $wheel->spin( '' ) ), 'new identity may spin' );
+$stats = WFG_Wheel::stats();
+ok( 2 === $stats['spins'] && 2 === $stats['coupons'] && 2 === count( WFG_Wheel::log_entries() ), 'stats + log recorded' );
+
+// E-mail cooldown across identities.
+set_settings( array( 'wheel_enabled' => true, 'wheel_require_email' => true, 'wheel_segments' => array(
+	array( 'label' => '5 €', 'type' => 'coupon', 'coupon_type' => 'fixed_cart', 'amount' => 5, 'weight' => 1, 'color' => '#111111' ),
+	array( 'label' => 'Nope', 'type' => 'none', 'weight' => 0, 'color' => '#222222' ),
+) ) );
+$cart = wheel_identity( '203.0.113.3' );
+$res  = $wheel->spin( 'stoner@example.com' );
+ok( ! is_wp_error( $res ) && array( 'stoner@example.com' ) === $GLOBALS['coupons'][ strtolower( $res['code'] ) ]['email_restrictions'], 'coupon bound to the e-mail address' );
+$cart = wheel_identity( '203.0.113.4' );
+ok( is_wp_error( $wheel->spin( 'Stoner@Example.com ' ) ), 'same e-mail (case/space-insensitive) on a new identity is blocked' );
+
+// Gift prize rides along in the cart.
+set_settings( array( 'wheel_enabled' => true, 'wheel_segments' => array(
+	array( 'label' => 'Gift', 'type' => 'gift', 'product_id' => 12, 'weight' => 100, 'color' => '#111111' ),
+	array( 'label' => 'Nope', 'type' => 'none', 'weight' => 0, 'color' => '#222222' ),
+) ) );
+$cart = wheel_identity( '203.0.113.5' );
+$res  = $wheel->spin( '' );
+ok( ! is_wp_error( $res ) && 'gift' === $res['type'] && array( 12 => true ) === array_map( 'is_int', WFG_Wheel::pending_gifts() ), 'gift prize stored in session' );
+ok( array() === gifts_in( $cart ), 'empty cart: prize waits' );
+$cart->add_to_cart( 1, 1 );
+ok( array( 12 ) === gifts_in( $cart ), 'prize added once the cart has paid items' );
+$gift_item = null; $gift_key = null; foreach ( $cart->get_cart() as $k => $i ) { if ( ! empty( $i['wfg_gift'] ) ) { $gift_item = $i; $gift_key = $k; } }
+ok( 0 === $gift_item['wfg_gift']['rule_id'] && 'Wheel of fortune prize' === $cart_int->item_data( array(), $gift_item )[0]['value'], 'prize line labelled as wheel prize' );
+$cart->remove_cart_item( $gift_key );
+ok( array() === gifts_in( $cart ) && array() === WFG_Wheel::pending_gifts(), 'removing the prize forfeits it' );
+
+// Out-of-stock gift segment is skipped.
+set_settings( array( 'wheel_enabled' => true, 'wheel_segments' => array(
+	array( 'label' => 'Sold out', 'type' => 'gift', 'product_id' => 14, 'weight' => 1000, 'color' => '#111111' ),
+	array( 'label' => '10 %', 'type' => 'coupon', 'coupon_type' => 'percent', 'amount' => 10, 'weight' => 1, 'color' => '#222222' ),
+) ) );
+$cart = wheel_identity( '203.0.113.6' );
+$res  = $wheel->spin( '' );
+ok( ! is_wp_error( $res ) && 'coupon' === $res['type'], 'out-of-stock gift segment skipped' );
+
+// Logged-in user cooldown via user meta.
+$GLOBALS['current_user'] = new WP_User( 9, array( 'customer' ) );
+$cart = wheel_identity( '203.0.113.7' );
+ok( ! is_wp_error( $wheel->spin( '' ) ), 'logged-in user spins' );
+$cart = wheel_identity( '203.0.113.8' );
+ok( is_wp_error( $wheel->spin( '' ) ) && $GLOBALS['user_meta'][9]['_wfg_wheel_next'] > time(), 'user meta blocks a second spin from another network' );
+$GLOBALS['current_user'] = new WP_User( 0 );
+
+// Segment sanitizing.
+$seg = WFG_Settings::sanitize_segments( array(
+	array( 'label' => 'A', 'type' => 'coupon', 'coupon_type' => 'percent', 'amount' => '150', 'code' => ' MyCode ', 'weight' => '-3' ),
+	array( 'label' => '', 'type' => 'coupon' ),
+	array( 'label' => 'B', 'type' => 'gift', 'product_id' => 0 ),
+	array( 'label' => 'C', 'type' => 'evil', 'color' => 'nope' ),
+), array() );
+ok( 3 === count( $seg ) && 100.0 === $seg[0]['amount'] && 'mycode' === $seg[0]['code'] && 3 === $seg[0]['weight'] && 'none' === $seg[1]['type'] && 'none' === $seg[2]['type'] && '#' === $seg[2]['color'][0], 'segments sanitized (cap, code, gift without product → none)' );
+ok( array( 'x' ) === WFG_Settings::sanitize_segments( array( array( 'label' => 'only one' ) ), array( 'x' ) ), 'fewer than 2 segments keep the fallback' );
+
 echo "\n$passed passed, $failed failed\n";
 exit( $failed ? 1 : 0 );

@@ -124,9 +124,99 @@
 		}
 	}
 
+	/* -----------------------------------------------------------------
+	 * Wheel segments repeater
+	 * -------------------------------------------------------------- */
+	function toggleSegmentType( $row ) {
+		var type = $row.find( '.wfg-segment-type' ).val();
+		$row.find( '.wfg-segment__coupon' ).prop( 'hidden', type !== 'coupon' );
+		$row.find( '.wfg-segment__gift' ).prop( 'hidden', type !== 'gift' );
+	}
+
+	function initSegments() {
+		var $container = $( '.wfg-segments' );
+		if ( ! $container.length ) {
+			return;
+		}
+
+		function renumber() {
+			$container.find( '.wfg-segment' ).each( function ( i ) {
+				$( this ).find( '.wfg-segment__index' ).text( i + 1 );
+			} );
+			updatePreview();
+		}
+
+		function updatePreview() {
+			var $preview = $( '.wfg-segments-preview' );
+			if ( ! $preview.length ) {
+				return;
+			}
+			var colors = [];
+			var weights = 0;
+			$container.find( '.wfg-segment' ).each( function () {
+				colors.push( $( this ).find( '.wfg-segment-color' ).val() || '#ccc' );
+				weights += parseInt( $( this ).find( '.wfg-segment-weight' ).val(), 10 ) || 0;
+			} );
+			var n = colors.length || 1;
+			var a = 360 / n;
+			var stops = colors.map( function ( c, i ) {
+				return c + ' ' + ( i * a ) + 'deg ' + ( ( i + 1 ) * a ) + 'deg';
+			} );
+			$preview.css( 'background', 'conic-gradient(from 0deg, ' + stops.join( ', ' ) + ')' );
+			$container.find( '.wfg-segment' ).each( function () {
+				var w = parseInt( $( this ).find( '.wfg-segment-weight' ).val(), 10 ) || 0;
+				$( this ).find( '.wfg-segment__chance' ).text( weights ? ( Math.round( ( w / weights ) * 1000 ) / 10 ) + ' %' : '–' );
+			} );
+		}
+
+		$container.find( '.wfg-segment' ).each( function () {
+			toggleSegmentType( $( this ) );
+		} );
+		renumber();
+
+		$container.on( 'change', '.wfg-segment-type', function () {
+			toggleSegmentType( $( this ).closest( '.wfg-segment' ) );
+		} );
+		$container.on( 'input change', '.wfg-segment-color, .wfg-segment-weight', updatePreview );
+
+		$container.on( 'click', '.wfg-segment-remove', function ( e ) {
+			e.preventDefault();
+			if ( $container.find( '.wfg-segment' ).length <= 2 ) {
+				window.alert( i18n.minSegments || 'At least 2 segments.' );
+				return;
+			}
+			$( this ).closest( '.wfg-segment' ).remove();
+			renumber();
+		} );
+
+		$( '.wfg-segment-add' ).on( 'click', function ( e ) {
+			e.preventDefault();
+			if ( $container.find( '.wfg-segment' ).length >= 12 ) {
+				return;
+			}
+			var template = $( '#wfg-segment-template' ).html();
+			if ( ! template ) {
+				return;
+			}
+			var max = -1;
+			$container.find( '.wfg-segment' ).each( function () {
+				var idx = parseInt( $( this ).attr( 'data-index' ), 10 );
+				if ( ! isNaN( idx ) && idx > max ) {
+					max = idx;
+				}
+			} );
+			var $row = $( template.replace( /__INDEX__/g, String( max + 1 ) ) );
+			$container.append( $row );
+			toggleSegmentType( $row );
+			renumber();
+			$( document.body ).trigger( 'wc-enhanced-select-init' );
+		} );
+	}
+
 	$( function () {
 		initRepeater();
 		initMedia();
 		initMisc();
+		initSegments();
 	} );
 }( jQuery ) );
