@@ -283,7 +283,11 @@ final class WFG_Admin {
 	 * Show feedback after redirects.
 	 */
 	public function notices() {
-		if ( ! $this->is_our_screen() || empty( $_GET['wfg_msg'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! $this->is_our_screen() ) {
+			return;
+		}
+		$this->low_stock_notice();
+		if ( empty( $_GET['wfg_msg'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 		$code     = sanitize_key( $_GET['wfg_msg'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -309,6 +313,45 @@ final class WFG_Admin {
 			esc_attr( $messages[ $code ][0] ),
 			esc_html( $messages[ $code ][1] . $detail )
 		);
+	}
+
+	/**
+	 * Warn about gifts that are (almost) exhausted.
+	 */
+	private function low_stock_notice() {
+		$threshold = (int) $this->settings->get( 'low_stock_threshold' );
+		$lines     = array();
+		$plugin    = wfg();
+		if ( ! $plugin || ! $plugin->engine ) {
+			return;
+		}
+		foreach ( $this->rules->all() as $rule ) {
+			if ( empty( $rule['enabled'] ) ) {
+				continue;
+			}
+			$left = $plugin->engine->remaining_units( $rule );
+			if ( null === $left || $left > $threshold ) {
+				continue;
+			}
+			$lines[] = sprintf(
+				'<a href="%s">%s</a>: %s',
+				esc_url(
+					self::url(
+						'rules',
+						array(
+							'action' => 'edit',
+							'rule'   => $rule['id'],
+						)
+					)
+				),
+				esc_html( $rule['title'] ),
+				0 === $left ? esc_html__( 'exhausted – the rule is no longer shown to customers', 'woo-free-gifts' ) : esc_html( sprintf( /* translators: %d: units left */ _n( 'only %d unit left', 'only %d units left', $left, 'woo-free-gifts' ), $left ) )
+			);
+		}
+		if ( empty( $lines ) ) {
+			return;
+		}
+		echo '<div class="notice notice-warning"><p><strong>' . esc_html__( 'Gift stock is running low:', 'woo-free-gifts' ) . '</strong></p><ul class="wfg-notice-list"><li>' . implode( '</li><li>', $lines ) . '</li></ul></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
 	}
 
 	/**
@@ -482,6 +525,7 @@ final class WFG_Admin {
 					'image_id'    => isset( $row['custom_image_id'] ) ? absint( $row['custom_image_id'] ) : 0,
 					'weight'      => isset( $row['custom_weight'] ) ? $row['custom_weight'] : '',
 					'virtual'     => isset( $row['custom_virtual'] ) ? ! empty( $row['custom_virtual'] ) : $this->settings->is( 'custom_gift_virtual' ),
+					'stock'       => isset( $row['custom_stock'] ) ? sanitize_text_field( $row['custom_stock'] ) : '',
 				),
 				$existing_id
 			);
@@ -562,6 +606,7 @@ final class WFG_Admin {
 					'image_id'    => $source->get_image_id(),
 					'weight'      => $source->get_weight(),
 					'virtual'     => $source->is_virtual(),
+					'stock'       => $source->managing_stock() ? (string) (int) $source->get_stock_quantity() : '',
 				)
 			);
 			if ( ! is_wp_error( $new_id ) ) {

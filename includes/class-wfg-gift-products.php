@@ -60,7 +60,7 @@ final class WFG_Gift_Products {
 	/**
 	 * Create or update a hidden gift product.
 	 *
-	 * @param array $data        name, description, image_id, weight, virtual.
+	 * @param array $data        name, description, image_id, weight, virtual, stock ('' = unlimited).
 	 * @param int   $existing_id Product id to update (0 = create).
 	 * @return int|WP_Error Product id.
 	 */
@@ -90,8 +90,17 @@ final class WFG_Gift_Products {
 		$product->set_sale_price( '' );
 		$product->set_price( '0' );
 		$product->set_tax_status( 'none' );
-		$product->set_manage_stock( false );
-		$product->set_stock_status( 'instock' );
+		$stock = isset( $data['stock'] ) ? trim( (string) $data['stock'] ) : '';
+		if ( '' !== $stock && is_numeric( $stock ) ) {
+			$product->set_manage_stock( true );
+			$product->set_stock_quantity( max( 0, (int) $stock ) );
+			$product->set_backorders( 'no' );
+			$product->set_low_stock_amount( '' );
+			$product->set_stock_status( (int) $stock > 0 ? 'instock' : 'outofstock' );
+		} else {
+			$product->set_manage_stock( false );
+			$product->set_stock_status( 'instock' );
+		}
 		$product->set_sold_individually( false );
 		$product->set_reviews_allowed( false );
 		$product->set_virtual( ! empty( $data['virtual'] ) );

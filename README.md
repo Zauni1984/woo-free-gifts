@@ -25,6 +25,8 @@ Produkte **innerhalb** von Bundles zählen für Produkt- und Kategoriebedingunge
 - Mehrere Geschenke pro Regel: alle automatisch hinzufügen **oder** Kunde wählt eines im Warenkorb.
 - Menge pro Geschenk.
 - Stacking: alle greifenden Regeln liefern ihre Geschenke, oder nur die höchste Regel.
+- **Bestand**: Custom-Geschenke bekommen ein Bestandsfeld (leer = unbegrenzt), das die WooCommerce-Lagerverwaltung am versteckten Produkt aktiviert. Abzug pro Bestellung, Rückbuchung bei Storno, bei null wird das Geschenk übersprungen. Katalog-Geschenke nutzen ihren normalen Lagerbestand.
+- **Budget pro Regel**: „Max. Bestellungen“, danach schaltet sich die Regel automatisch ab. Aus Bestand und Budget entsteht die „Nur noch X Stück“-Zeile im Fortschrittsbalken und Popup (Schwelle einstellbar). Im Admin warnt eine Meldung, sobald ein Geschenk knapp wird.
 
 ### Kundenerlebnis
 
@@ -107,6 +109,6 @@ GPL-2.0-or-later.
 Die Kernlogik (Regel-Engine, Warenkorb-Sync, Templates, Admin-Views) lässt sich ohne WordPress-Installation gegen Stubs testen:
 
 ```bash
-php tests/run.php      # 83 Funktionstests (Schwellen, Stacking, B+C, Bundles, Auswahl, Entfernen, Lager, Rollen, Glücksrad …)
+php tests/run.php      # 95 Funktionstests (Schwellen, Stacking, B+C, Bundles, Auswahl, Entfernen, Lager, Rollen, Bestand/Budget, Glücksrad …)
 php tests/render.php   # rendert alle Templates und Admin-Views und meldet PHP-Notices
 ```

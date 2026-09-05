@@ -71,6 +71,25 @@ final class WFG_Helpers {
 	}
 
 	/**
+	 * "Only X left" line, or empty when unlimited / above the configured threshold.
+	 *
+	 * @param WFG_Settings $settings Settings.
+	 * @param int|null     $left     Units left (null = unlimited).
+	 * @return string
+	 */
+	public static function scarcity_text( WFG_Settings $settings, $left ) {
+		if ( null === $left ) {
+			return '';
+		}
+		$threshold = (int) $settings->get( 'scarcity_threshold' );
+		if ( $threshold > 0 && (int) $left > $threshold ) {
+			return '';
+		}
+		$template = (string) $settings->get( 'msg_scarcity' );
+		return '' === trim( $template ) ? '' : self::placeholders( $template, array( 'left' => (int) $left ) );
+	}
+
+	/**
 	 * Is the current request from the WP admin (not AJAX)?
 	 *
 	 * @return bool

@@ -49,6 +49,9 @@ final class WFG_Settings {
 			'msg_choose'               => __( 'Pick your free gift:', 'woo-free-gifts' ),
 			'msg_single_hint'          => __( '🎁 Free gift: {gift} from {threshold} order value.', 'woo-free-gifts' ),
 			'progress_color'           => '#2e7d32',
+			'msg_scarcity'             => __( 'Only {left} left – be quick!', 'woo-free-gifts' ),
+			'scarcity_threshold'       => 20, // Show "only X left" when X <= this (0 = always).
+			'low_stock_threshold'      => 5,  // Admin warning when a gift's remaining units drop to this.
 
 			// Popup.
 			'popup_enabled'            => false,
@@ -273,6 +276,7 @@ final class WFG_Settings {
 			'msg_unlocked',
 			'msg_choose',
 			'msg_single_hint',
+			'msg_scarcity',
 			'popup_title',
 			'popup_button',
 			'wheel_title',
@@ -308,10 +312,12 @@ final class WFG_Settings {
 		$freq                     = isset( $raw['popup_frequency'] ) ? sanitize_key( $raw['popup_frequency'] ) : 'session';
 		$clean['popup_frequency'] = in_array( $freq, array( 'session', 'days', 'once', 'always' ), true ) ? $freq : 'session';
 
-		$clean['popup_days']       = isset( $raw['popup_days'] ) ? max( 1, min( 365, absint( $raw['popup_days'] ) ) ) : $d['popup_days'];
-		$clean['popup_delay']      = isset( $raw['popup_delay'] ) ? max( 0, min( 120, absint( $raw['popup_delay'] ) ) ) : $d['popup_delay'];
-		$clean['popup_image_id']   = isset( $raw['popup_image_id'] ) ? absint( $raw['popup_image_id'] ) : 0;
-		$clean['popup_button_url'] = isset( $raw['popup_button_url'] ) ? esc_url_raw( $raw['popup_button_url'] ) : '';
+		$clean['scarcity_threshold']  = isset( $raw['scarcity_threshold'] ) ? max( 0, min( 100000, absint( $raw['scarcity_threshold'] ) ) ) : $d['scarcity_threshold'];
+		$clean['low_stock_threshold'] = isset( $raw['low_stock_threshold'] ) ? max( 0, min( 100000, absint( $raw['low_stock_threshold'] ) ) ) : $d['low_stock_threshold'];
+		$clean['popup_days']          = isset( $raw['popup_days'] ) ? max( 1, min( 365, absint( $raw['popup_days'] ) ) ) : $d['popup_days'];
+		$clean['popup_delay']         = isset( $raw['popup_delay'] ) ? max( 0, min( 120, absint( $raw['popup_delay'] ) ) ) : $d['popup_delay'];
+		$clean['popup_image_id']      = isset( $raw['popup_image_id'] ) ? absint( $raw['popup_image_id'] ) : 0;
+		$clean['popup_button_url']    = isset( $raw['popup_button_url'] ) ? esc_url_raw( $raw['popup_button_url'] ) : '';
 
 		$clean['progress_color'] = self::sanitize_color( isset( $raw['progress_color'] ) ? $raw['progress_color'] : '', $d['progress_color'] );
 		$clean['popup_accent']   = self::sanitize_color( isset( $raw['popup_accent'] ) ? $raw['popup_accent'] : '', $d['popup_accent'] );

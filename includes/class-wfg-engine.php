@@ -439,6 +439,56 @@ final class WFG_Engine {
 	}
 
 	/**
+	 * How many more times this rule's gift can be handed out.
+	 *
+	 * Combines the rule's claim limit with the stock of stock-managed gift products.
+	 * Auto mode needs every gift, so the smallest stock counts; in choice mode the
+	 * customer may pick any gift, so the largest counts.
+	 *
+	 * @param array $rule Rule.
+	 * @return int|null Units left, or null when unlimited.
+	 */
+	public function remaining_units( array $rule ) {
+		$left = null;
+
+		if ( (int) $rule['claim_limit'] > 0 ) {
+			$left = max( 0, (int) $rule['claim_limit'] - WFG_Rules::claims( $rule['id'] ) );
+		}
+
+		$stocks = array();
+		$open   = false; // At least one gift without stock management.
+		foreach ( (array) $rule['gifts'] as $gift ) {
+			$product = wc_get_product( (int) $gift['product_id'] );
+			if ( ! $product instanceof WC_Product ) {
+				continue;
+			}
+			if ( $product->managing_stock() && ! $product->backorders_allowed() ) {
+				$stocks[] = (int) floor( max( 0, (int) $product->get_stock_quantity() ) / max( 1, (int) $gift['qty'] ) );
+			} else {
+				$open = true;
+			}
+		}
+		if ( ! empty( $stocks ) ) {
+			if ( 'choice' === $rule['gift_mode'] ) {
+				$by_stock = $open ? null : max( $stocks );
+			} else {
+				$by_stock = min( $stocks );
+			}
+			if ( null !== $by_stock ) {
+				$left = null === $left ? $by_stock : min( $left, $by_stock );
+			}
+		}
+
+		/**
+		 * Filter the remaining units of a rule.
+		 *
+		 * @param int|null $left Units left (null = unlimited).
+		 * @param array    $rule Rule.
+		 */
+		return apply_filters( 'wfg_remaining_units', $left, $rule );
+	}
+
+	/**
 	 * Comma separated gift names for messaging.
 	 *
 	 * @param array $rule Rule.
@@ -492,15 +542,16 @@ final class WFG_Engine {
 				}
 				continue;
 			}
-			// Candidate for "next": threshold rules that only miss the amount.
+			// Candidate for "next": threshold rules that only miss the amount and still have a gift to give.
 			if ( (float) $rule['min_total'] > 0 && ! empty( $rule['show_progress'] ) && $res['remaining'] > 0 ) {
-				if ( ! $this->other_conditions_met( $rule, $cart ) ) {
+				if ( ! $this->other_conditions_met( $rule, $cart ) || empty( $this->available_gifts( $rule ) ) ) {
 					continue;
 				}
 				if ( null === $next || $res['remaining'] < $next['remaining'] ) {
 					$next = array(
 						'rule'      => $rule,
 						'remaining' => $res['remaining'],
+						'left'      => $this->remaining_units( $rule ),
 						'threshold' => (float) $rule['min_total'],
 						'percent'   => (float) $rule['min_total'] > 0 ? min( 100, max( 0, ( $basis / (float) $rule['min_total'] ) * 100 ) ) : 100,
 					);

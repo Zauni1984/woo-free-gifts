@@ -90,7 +90,7 @@ $opt = $settings->all();
 				<th scope="row"><label for="wfg-msg-progress"><?php esc_html_e( 'Progress message', 'woo-free-gifts' ); ?></label></th>
 				<td>
 					<input type="text" id="wfg-msg-progress" name="wfg[msg_progress]" value="<?php echo esc_attr( $opt['msg_progress'] ); ?>" class="large-text">
-					<p class="description"><?php esc_html_e( 'Placeholders: {remaining}, {threshold}, {gift}', 'woo-free-gifts' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Placeholders: {remaining}, {threshold}, {gift}, {left}', 'woo-free-gifts' ); ?></p>
 				</td>
 			</tr>
 			<tr>
@@ -118,6 +118,21 @@ $opt = $settings->all();
 					<label for="wfg-price-label" class="wfg-ml"><?php esc_html_e( 'Price label', 'woo-free-gifts' ); ?></label>
 					<input type="text" id="wfg-price-label" name="wfg[gift_price_label]" value="<?php echo esc_attr( $opt['gift_price_label'] ); ?>" class="small-text">
 					<p class="description"><?php esc_html_e( 'Shown next to gift lines in cart, checkout, e-mails and orders.', 'woo-free-gifts' ); ?></p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="wfg-msg-scarcity"><?php esc_html_e( 'Scarcity line', 'woo-free-gifts' ); ?></label></th>
+				<td class="wfg-inline-fields">
+					<input type="text" id="wfg-msg-scarcity" name="wfg[msg_scarcity]" value="<?php echo esc_attr( $opt['msg_scarcity'] ); ?>" class="large-text">
+					<label><?php esc_html_e( 'Show when at most', 'woo-free-gifts' ); ?> <input type="number" name="wfg[scarcity_threshold]" value="<?php echo esc_attr( (int) $opt['scarcity_threshold'] ); ?>" min="0" max="100000" class="small-text"> <?php esc_html_e( 'units are left (0 = always)', 'woo-free-gifts' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Shown under the progress bar and in the popup for rules with a gift stock or an order budget. Placeholder: {left}. Leave empty to disable.', 'woo-free-gifts' ); ?></p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="wfg-low-stock"><?php esc_html_e( 'Low stock warning', 'woo-free-gifts' ); ?></label></th>
+				<td>
+					<input type="number" id="wfg-low-stock" name="wfg[low_stock_threshold]" value="<?php echo esc_attr( (int) $opt['low_stock_threshold'] ); ?>" min="0" max="100000" class="small-text">
+					<p class="description"><?php esc_html_e( 'Warn on the Free Gifts admin pages when a gift has this many units (or fewer) left.', 'woo-free-gifts' ); ?></p>
 				</td>
 			</tr>
 			<tr>

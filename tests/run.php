@@ -264,6 +264,41 @@ $html = WFG_Helpers::placeholders( 'Add {remaining} to get {gift}', array( 'rema
 ok( 'Add 5 € to get X' === $html, 'placeholders' );
 
 // ---------------------------------------------------------------------------
+section( 'Stock & budget' );
+wfg_test_product( array( 'id' => 17, 'name' => 'Limited 3', 'price' => 0, 'manage_stock' => true, 'stock' => 3 ) );
+$ids = set_rules( array(
+	array( 'title' => 'Budget 2', 'enabled' => 1, 'min_total' => 10, 'claim_limit' => 2, 'gifts' => array( array( 'product_id' => 12 ) ), 'show_progress' => 1 ),
+	array( 'title' => 'Stock 3', 'enabled' => 1, 'min_total' => 500, 'gifts' => array( array( 'product_id' => 17, 'custom' => 1 ) ), 'show_progress' => 1 ),
+	array( 'title' => 'Both', 'enabled' => 1, 'min_total' => 900, 'claim_limit' => 10, 'gifts' => array( array( 'product_id' => 17, 'qty' => 2, 'custom' => 1 ) ), 'show_progress' => 1 ),
+	array( 'title' => 'Choice', 'enabled' => 1, 'min_total' => 950, 'gift_mode' => 'choice', 'gifts' => array( array( 'product_id' => 17 ), array( 'product_id' => 12 ) ), 'show_progress' => 1 ),
+) );
+$GLOBALS['wp_options'][ WFG_Order::OPTION_STATS ] = array( $ids[0] => array( 'count' => 1, 'last' => time() ) );
+ok( 1 === $engine->remaining_units( $rules->get( $ids[0] ) ), 'budget 2 minus 1 claim = 1 left' );
+ok( 3 === $engine->remaining_units( $rules->get( $ids[1] ) ), 'stock-managed gift: 3 left' );
+ok( 1 === $engine->remaining_units( $rules->get( $ids[2] ) ), 'qty 2 from stock 3 = 1 left (limit 10 not binding)' );
+ok( null === $engine->remaining_units( $rules->get( $ids[3] ) ), 'choice with an unlimited gift = unlimited' );
+ok( null === $engine->remaining_units( array_merge( WFG_Rules::defaults(), array( 'gifts' => array( array( 'product_id' => 12, 'qty' => 1 ) ) ) ) ), 'unmanaged stock = unlimited' );
+$cart = fresh_cart();
+$cart->add_to_cart( 1, 1 ); // 20 € -> budget rule qualifies
+ok( array( 12 ) === gifts_in( $cart ), 'budget rule still active with 1 claim left' );
+$p = $engine->progress( $cart );
+ok( $p['next'] && 3 === $p['next']['left'], 'progress exposes units left of the next rule' );
+$fe = new WFG_Frontend( $settings, $engine, $cart_int );
+ok( 'Only 3 left – be quick!' === $fe->scarcity_text( 3 ) && '' === $fe->scarcity_text( null ) && '' === $fe->scarcity_text( 21 ), 'scarcity text respects threshold + unlimited' );
+$GLOBALS['wp_options'][ WFG_Order::OPTION_STATS ] = array( $ids[0] => array( 'count' => 2, 'last' => time() ) );
+$rules = new WFG_Rules(); $GLOBALS['rules'] = $rules;
+ok( ! isset( $rules->active()[ $ids[0] ] ), 'budget used up: rule no longer active' );
+$engine->flush(); $cart->calculate_totals();
+ok( array() === gifts_in( $cart ), 'exhausted rule removes its gift from the cart' );
+$GLOBALS['wp_options'][ WFG_Order::OPTION_STATS ] = array();
+$GLOBALS['products'][17]['stock'] = 0; $GLOBALS['products'][17]['stock_status'] = 'outofstock';
+$engine->flush();
+$p = $engine->progress( $cart );
+ok( ! $p['next'] || $p['next']['rule']['id'] !== $ids[1], 'rule whose gift is out of stock is not offered as "next"' );
+$r = WFG_Rules::sanitize( array( 'title' => 'x', 'claim_limit' => '-4', 'gifts' => array( array( 'product_id' => 12 ) ) ) );
+ok( 4 === $r['claim_limit'], 'claim_limit sanitized' );
+
+// ---------------------------------------------------------------------------
 section( 'Wheel of fortune' );
 function wheel_identity( $ip ) { $GLOBALS['ip'] = $ip; unset( $_COOKIE['wfg_wheel_next'] ); return fresh_cart(); }
 set_rules( array() );

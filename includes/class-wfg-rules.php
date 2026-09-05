@@ -46,6 +46,7 @@ final class WFG_Rules {
 			'user_roles'          => array(),
 			'logged_in_only'      => false,
 			'once_per_customer'   => false,
+			'claim_limit'         => 0, // Max. number of orders that may claim this rule (0 = unlimited).
 			'date_from'           => '',
 			'date_to'             => '',
 
@@ -108,6 +109,9 @@ final class WFG_Rules {
 		foreach ( $this->all() as $rule ) {
 			if ( empty( $rule['enabled'] ) || empty( $rule['gifts'] ) ) {
 				continue;
+			}
+			if ( (int) $rule['claim_limit'] > 0 && self::claims( $rule['id'] ) >= (int) $rule['claim_limit'] ) {
+				continue; // Budget exhausted.
 			}
 			if ( '' !== $rule['date_from'] && $now < strtotime( $rule['date_from'] . ' 00:00:00' ) ) {
 				continue;
@@ -259,6 +263,7 @@ final class WFG_Rules {
 		$r['user_roles']        = array_values( array_unique( $roles ) );
 		$r['logged_in_only']    = ! empty( $raw['logged_in_only'] );
 		$r['once_per_customer'] = ! empty( $raw['once_per_customer'] );
+		$r['claim_limit']       = isset( $raw['claim_limit'] ) ? max( 0, min( 1000000, absint( $raw['claim_limit'] ) ) ) : 0;
 		$r['date_from']         = self::sanitize_date( isset( $raw['date_from'] ) ? $raw['date_from'] : '' );
 		$r['date_to']           = self::sanitize_date( isset( $raw['date_to'] ) ? $raw['date_to'] : '' );
 
@@ -290,6 +295,17 @@ final class WFG_Rules {
 		$r['popup_text']    = isset( $raw['popup_text'] ) ? sanitize_text_field( $raw['popup_text'] ) : '';
 
 		return $r;
+	}
+
+	/**
+	 * Number of orders that claimed a rule so far.
+	 *
+	 * @param int $rule_id Rule id.
+	 * @return int
+	 */
+	public static function claims( $rule_id ) {
+		$stats = WFG_Order::stats();
+		return isset( $stats[ (int) $rule_id ]['count'] ) ? (int) $stats[ (int) $rule_id ]['count'] : 0;
 	}
 
 	/**

@@ -357,3 +357,8 @@
 		position: static;
 	}
 }
+
+.wfg-notice-list {
+	margin: 0 0 0.5em 1.5em;
+	list-style: disc;
+}

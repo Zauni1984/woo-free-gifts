@@ -96,10 +96,16 @@ final class WFG_Popup {
 			if ( '' === $text ) {
 				$text = $this->default_offer_text( $rule );
 			}
+			$left     = $this->engine->remaining_units( $rule );
+			$scarcity = WFG_Helpers::scarcity_text( $this->settings, $left );
+			if ( '' !== $scarcity ) {
+				$text .= ' · ' . $scarcity;
+			}
 			$offers[] = array(
 				'rule'  => $rule,
 				'text'  => $text,
 				'gifts' => $gifts,
+				'left'  => $left,
 			);
 		}
 		return $offers;

@@ -73,6 +73,17 @@
 	font-weight: 600;
 }
 
+.wfg-progress__scarcity {
+	display: inline-block;
+	margin: 0 0 0.5em;
+	padding: 0.15em 0.7em;
+	border-radius: 999px;
+	background: #fff3e0;
+	color: #b34700;
+	font-size: 0.85em;
+	font-weight: 700;
+}
+
 .wfg-progress__bar {
 	position: relative;
 	height: 10px;

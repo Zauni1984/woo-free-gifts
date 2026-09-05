@@ -33,6 +33,7 @@ Woo Free Gifts adds gifts to the cart automatically when a rule matches – and 
 * Several gifts per rule: add all automatically or let the customer pick one in the cart
 * Quantity per gift
 * Stacking: every qualifying rule adds its gifts, or only the highest rule
+* Stock for custom gifts (WooCommerce stock management on the hidden product), order budget per rule, "Only X left" scarcity line and low-stock admin warning
 
 **Customer experience**
 

@@ -99,7 +99,12 @@ $wfg_render_gift_row = static function ( $index, array $gift ) use ( $settings )
 						$virtual = isset( $gift['custom_virtual'] ) ? (bool) $gift['custom_virtual'] : $settings->is( 'custom_gift_virtual' );
 						echo WFG_Admin::checkbox( $name . '[custom_virtual]', $virtual, __( 'Virtual (no shipping)', 'woo-free-gifts' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
+						<label>
+							<?php esc_html_e( 'Stock', 'woo-free-gifts' ); ?>
+							<input type="number" name="<?php echo esc_attr( $name ); ?>[custom_stock]" value="<?php echo esc_attr( isset( $gift['custom_stock'] ) ? $gift['custom_stock'] : '' ); ?>" min="0" step="1" class="small-text" placeholder="∞">
+						</label>
 					</p>
+					<p class="description"><?php esc_html_e( 'Stock: number of units available (empty = unlimited). WooCommerce deducts one unit per order and restocks on cancellation; when the stock hits zero the gift is skipped automatically.', 'woo-free-gifts' ); ?></p>
 					<p class="description"><?php esc_html_e( 'A hidden product is created for this gift. It never appears in the shop, search, feeds or sitemaps and cannot be bought separately.', 'woo-free-gifts' ); ?></p>
 				</div>
 			</div>
@@ -122,6 +127,7 @@ foreach ( (array) $rule['gifts'] as $gift ) {
 			'custom_image_id' => $product ? $product->get_image_id() : 0,
 			'custom_weight'   => $product ? $product->get_weight() : '',
 			'custom_virtual'  => $product ? $product->is_virtual() : $settings->is( 'custom_gift_virtual' ),
+			'custom_stock'    => $product && $product->managing_stock() ? (int) $product->get_stock_quantity() : '',
 		);
 	} else {
 		$gift_rows[] = array(
@@ -242,6 +248,19 @@ foreach ( (array) $rule['gifts'] as $gift ) {
 							</select>
 							<p><?php echo WFG_Admin::checkbox( 'rule[logged_in_only]', $rule['logged_in_only'], __( 'Logged-in customers only', 'woo-free-gifts' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 							<p><?php echo WFG_Admin::checkbox( 'rule[once_per_customer]', $rule['once_per_customer'], __( 'Only once per customer account (guests are not tracked)', 'woo-free-gifts' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="wfg-claim-limit"><?php esc_html_e( 'Budget', 'woo-free-gifts' ); ?></label></th>
+						<td class="wfg-inline-fields">
+							<label>
+								<?php esc_html_e( 'Max. orders', 'woo-free-gifts' ); ?>
+								<input type="number" id="wfg-claim-limit" name="rule[claim_limit]" value="<?php echo esc_attr( (int) $rule['claim_limit'] ? (int) $rule['claim_limit'] : '' ); ?>" min="0" max="1000000" class="small-text" placeholder="∞">
+							</label>
+							<?php if ( ! $is_new ) : ?>
+								<span class="description"><?php echo esc_html( sprintf( /* translators: %d: number of orders */ __( 'claimed so far: %d', 'woo-free-gifts' ), WFG_Rules::claims( $rule['id'] ) ) ); ?></span>
+							<?php endif; ?>
+							<p class="description"><?php esc_html_e( 'Once this many orders have claimed the rule it switches off automatically. Together with the gift stock this drives the "Only X left" scarcity line (see Settings).', 'woo-free-gifts' ); ?></p>
 						</td>
 					</tr>
 					<tr>

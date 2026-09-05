@@ -107,6 +107,9 @@ uasort(
 								<?php endif; ?>
 								<?php if ( ! $product->is_in_stock() ) : ?>
 									<span class="wfg-pill wfg-pill--warn"><?php esc_html_e( 'out of stock', 'woo-free-gifts' ); ?></span>
+								<?php elseif ( $product->managing_stock() ) : ?>
+									<?php $stock_left = (int) $product->get_stock_quantity(); ?>
+									<span class="wfg-pill<?php echo $stock_left <= (int) $settings->get( 'low_stock_threshold' ) ? ' wfg-pill--warn' : ''; ?>"><?php echo esc_html( sprintf( /* translators: %d: stock quantity */ __( '%d in stock', 'woo-free-gifts' ), $stock_left ) ); ?></span>
 								<?php endif; ?>
 							<?php else : ?>
 								<span class="wfg-pill wfg-pill--warn"><?php echo esc_html( sprintf( /* translators: %d: product id */ __( 'Missing product #%d', 'woo-free-gifts' ), $gift['product_id'] ) ); ?></span>
@@ -119,7 +122,15 @@ uasort(
 				<?php endif; ?>
 			</td>
 			<td><?php echo esc_html( $rule['priority'] ); ?></td>
-			<td><?php echo esc_html( number_format_i18n( $count ) ); ?></td>
+			<td>
+				<?php echo esc_html( number_format_i18n( $count ) ); ?>
+				<?php if ( (int) $rule['claim_limit'] > 0 ) : ?>
+					<span class="description">/ <?php echo esc_html( number_format_i18n( (int) $rule['claim_limit'] ) ); ?></span>
+					<?php if ( $count >= (int) $rule['claim_limit'] ) : ?>
+						<br><span class="wfg-pill wfg-pill--warn"><?php esc_html_e( 'budget used up', 'woo-free-gifts' ); ?></span>
+					<?php endif; ?>
+				<?php endif; ?>
+			</td>
 			<td>
 				<?php if ( $rule['enabled'] ) : ?>
 					<span class="wfg-status wfg-status--on"><?php esc_html_e( 'Active', 'woo-free-gifts' ); ?></span>

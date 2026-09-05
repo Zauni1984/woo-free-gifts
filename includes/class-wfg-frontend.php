@@ -165,11 +165,22 @@ final class WFG_Frontend {
 			'engine'   => $this->engine,
 			'cart'     => $this->cart,
 			'messages' => $this->messages( $data ),
+			'scarcity' => $data['next'] ? $this->scarcity_text( $data['next']['left'] ) : '',
 		);
 
 		$html = WFG_Helpers::template( 'progress-box', $args );
 
 		return '' === trim( $html ) ? $empty_box : $html;
+	}
+
+	/**
+	 * "Only X left" line, or empty when unlimited / above the threshold.
+	 *
+	 * @param int|null $left Units left.
+	 * @return string
+	 */
+	public function scarcity_text( $left ) {
+		return WFG_Helpers::scarcity_text( $this->settings, $left );
 	}
 
 	/**
@@ -189,6 +200,7 @@ final class WFG_Frontend {
 					'remaining' => WFG_Helpers::price_text( $data['next']['remaining'] ),
 					'threshold' => WFG_Helpers::price_text( $data['next']['threshold'] ),
 					'gift'      => $this->engine->gift_names( $rule ),
+					'left'      => null === $data['next']['left'] ? '' : (int) $data['next']['left'],
 				)
 			);
 		}

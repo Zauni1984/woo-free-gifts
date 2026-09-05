@@ -62,11 +62,11 @@ msgid "Gift rules"
 msgstr ""
 
 #. translators: %s: settings link
-#: includes/admin/class-wfg-admin.php:248 includes/admin/views/rule-edit.php:186 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:147
+#: includes/admin/class-wfg-admin.php:248 includes/admin/views/rule-edit.php:192 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:147
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:249 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:306
+#: includes/admin/class-wfg-admin.php:249 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:325
 msgid "Popup"
 msgstr ""
 
@@ -78,52 +78,68 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:291
+#: includes/admin/class-wfg-admin.php:295
 msgid "Rule saved."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:292
+#: includes/admin/class-wfg-admin.php:296
 msgid "Rule deleted."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:293
+#: includes/admin/class-wfg-admin.php:297
 msgid "Rule duplicated. It is disabled until you enable it."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:294
+#: includes/admin/class-wfg-admin.php:298
 msgid "Rule updated."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:295
+#: includes/admin/class-wfg-admin.php:299
 msgid "Settings saved."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:296
+#: includes/admin/class-wfg-admin.php:300
 msgid "Statistics reset."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:297
+#: includes/admin/class-wfg-admin.php:301
 msgid "The rule was not saved: add at least one gift."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:298
+#: includes/admin/class-wfg-admin.php:302
 msgid "Something went wrong. Please try again."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:338
+#: includes/admin/class-wfg-admin.php:348
+msgid "exhausted – the rule is no longer shown to customers"
+msgstr ""
+
+#. translators: %d: units left
+#: includes/admin/class-wfg-admin.php:348
+msgid "only %d unit left"
+msgid_plural "only %d units left"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: units left
+#: includes/admin/class-wfg-admin.php:354
+msgid "Gift stock is running low:"
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:381
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:384
+#: includes/admin/class-wfg-admin.php:427
 msgid "Gift rule"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:462
+#: includes/admin/class-wfg-admin.php:505
 msgid "Please pick a specific variation instead of the variable parent product."
 msgstr ""
 
 #. translators: %s: original rule title
-#: includes/admin/class-wfg-admin.php:546
+#: includes/admin/class-wfg-admin.php:590
 msgid "%s (copy)"
 msgstr ""
 
@@ -235,7 +251,7 @@ msgstr ""
 msgid "Optional link (empty = just close)"
 msgstr ""
 
-#: includes/admin/views/popup.php:118 includes/admin/views/settings.php:124 includes/admin/views/wheel.php:94
+#: includes/admin/views/popup.php:118 includes/admin/views/settings.php:139 includes/admin/views/wheel.php:94
 msgid "Accent colour"
 msgstr ""
 
@@ -289,239 +305,265 @@ msgid "Virtual (no shipping)"
 msgstr ""
 
 #: includes/admin/views/rule-edit.php:103
+msgid "Stock"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:107
+msgid "Stock: number of units available (empty = unlimited). WooCommerce deducts one unit per order and restocks on cancellation; when the stock hits zero the gift is skipped automatically."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:108
 msgid "A hidden product is created for this gift. It never appears in the shop, search, feeds or sitemaps and cannot be bought separately."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:145
+#: includes/admin/views/rule-edit.php:151
 msgid "New gift rule"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:145
+#: includes/admin/views/rule-edit.php:151
 msgid "Edit gift rule"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:148
+#: includes/admin/views/rule-edit.php:154
 msgid "Rule name"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:150
+#: includes/admin/views/rule-edit.php:156
 msgid "e.g. Free seed from 50 €"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:151
+#: includes/admin/views/rule-edit.php:157
 msgid "Internal name. Also shown on the order line as the gift label."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:155 includes/admin/views/rules-list.php:43
+#: includes/admin/views/rule-edit.php:161 includes/admin/views/rules-list.php:43
 msgid "Status"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:156
+#: includes/admin/views/rule-edit.php:162
 msgid "Rule is active"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:159 includes/admin/views/rules-list.php:41
+#: includes/admin/views/rule-edit.php:165 includes/admin/views/rules-list.php:41
 msgid "Priority"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:162
+#: includes/admin/views/rule-edit.php:168
 msgid "Higher wins when the stacking mode is \"highest rule only\". With the same priority the higher cart threshold wins."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:169 includes/admin/views/rules-list.php:39
+#: includes/admin/views/rule-edit.php:175 includes/admin/views/rules-list.php:39
 msgid "Conditions"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:170
+#: includes/admin/views/rule-edit.php:176
 msgid "All conditions you fill in must be met (AND). Leave a condition empty to ignore it."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:173
+#: includes/admin/views/rule-edit.php:179
 msgid "Minimum cart value"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:178
+#: includes/admin/views/rule-edit.php:184
 msgid "Maximum"
 msgstr ""
 
 #. translators: %s: settings link
-#: includes/admin/views/rule-edit.php:185
+#: includes/admin/views/rule-edit.php:191
 msgid "Compared against the cart value without gifts. Tax / coupon handling is configured under %s."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:193
+#: includes/admin/views/rule-edit.php:199
 msgid "Required products"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:195
+#: includes/admin/views/rule-edit.php:201
 msgid "Search products, variations or bundles…"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:201
+#: includes/admin/views/rule-edit.php:207
 msgid "All of these products must be in the cart"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:202
+#: includes/admin/views/rule-edit.php:208
 msgid "Any one of these products is enough"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:206
+#: includes/admin/views/rule-edit.php:212
 msgid "Min. quantity each"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:210
+#: includes/admin/views/rule-edit.php:216
 msgid "\"Buy product B and C, get gift X\". Items inside product bundles count as well (configurable in the settings)."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:214
+#: includes/admin/views/rule-edit.php:220
 msgid "Required categories"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:216
+#: includes/admin/views/rule-edit.php:222
 msgid "Any category…"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:221
+#: includes/admin/views/rule-edit.php:227
 msgid "The cart must contain at least one product from one of these categories (child categories included)."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:225 includes/admin/views/settings.php:53
+#: includes/admin/views/rule-edit.php:231 includes/admin/views/settings.php:53
 msgid "Bundles"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:227
+#: includes/admin/views/rule-edit.php:233
 msgid "Only when the cart contains a bundle product"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:228
+#: includes/admin/views/rule-edit.php:234
 msgid "Works with WooCommerce Product Bundles, WPC Product Bundles, YITH Bundles, Composite and Grouped products. To require a specific bundle, add it under \"Required products\"."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:232
+#: includes/admin/views/rule-edit.php:238
 msgid "Minimum item count"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:236
+#: includes/admin/views/rule-edit.php:242
 msgid "Customers"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:238
+#: includes/admin/views/rule-edit.php:244
 msgid "All customer roles…"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:243
+#: includes/admin/views/rule-edit.php:249
 msgid "Logged-in customers only"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:244
+#: includes/admin/views/rule-edit.php:250
 msgid "Only once per customer account (guests are not tracked)"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:248
+#: includes/admin/views/rule-edit.php:254
+msgid "Budget"
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:257
+msgid "Max. orders"
+msgstr ""
+
+#. translators: %d: number of orders
+#: includes/admin/views/rule-edit.php:261
+msgid "claimed so far: %d"
+msgstr ""
+
+#. translators: %d: number of orders
+#: includes/admin/views/rule-edit.php:263
+msgid "Once this many orders have claimed the rule it switches off automatically. Together with the gift stock this drives the \"Only X left\" scarcity line (see Settings)."
+msgstr ""
+
+#: includes/admin/views/rule-edit.php:267
 msgid "Schedule"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:250
+#: includes/admin/views/rule-edit.php:269
 msgid "From"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:251
+#: includes/admin/views/rule-edit.php:270
 msgid "Until"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:252
+#: includes/admin/views/rule-edit.php:271
 msgid "Leave empty for no time limit. Dates use the site timezone."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:259 includes/admin/views/rules-list.php:40
+#: includes/admin/views/rule-edit.php:278 includes/admin/views/rules-list.php:40
 msgid "Gifts"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:262
+#: includes/admin/views/rule-edit.php:281
 msgid "When several gifts are listed"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:264
+#: includes/admin/views/rule-edit.php:283
 msgid "Add all of them automatically"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:265
+#: includes/admin/views/rule-edit.php:284
 msgid "Let the customer pick one in the cart"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:279
+#: includes/admin/views/rule-edit.php:298
 msgid "+ Add gift"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:283
+#: includes/admin/views/rule-edit.php:302
 msgid "Messages & popup"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:286
+#: includes/admin/views/rule-edit.php:305
 msgid "Progress bar"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:288
+#: includes/admin/views/rule-edit.php:307
 msgid "Show this rule in the cart progress bar and product page hint (cart-value rules only)"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:292 includes/admin/views/settings.php:90
+#: includes/admin/views/rule-edit.php:311 includes/admin/views/settings.php:90
 msgid "Progress message"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:295
+#: includes/admin/views/rule-edit.php:314
 msgid "Overrides the global text. Placeholders: {remaining}, {threshold}, {gift}"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:299 includes/admin/views/settings.php:97
+#: includes/admin/views/rule-edit.php:318 includes/admin/views/settings.php:97
 msgid "Unlocked message"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:302
+#: includes/admin/views/rule-edit.php:321
 msgid "Overrides the global text. Placeholders: {threshold}, {gift}"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:308
+#: includes/admin/views/rule-edit.php:327
 msgid "List this offer in the promo popup"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:309
+#: includes/admin/views/rule-edit.php:328
 msgid "Optional custom line, e.g. \"Free seed with every order over 50 €\""
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:319
+#: includes/admin/views/rule-edit.php:338
 msgid "Create rule"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:319
+#: includes/admin/views/rule-edit.php:338
 msgid "Save rule"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:320
+#: includes/admin/views/rule-edit.php:339
 msgid "← Back to all rules"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:322
+#: includes/admin/views/rule-edit.php:341
 msgid "Delete rule"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:325
+#: includes/admin/views/rule-edit.php:344
 msgid "Examples"
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:327
+#: includes/admin/views/rule-edit.php:346
 msgid "Free seed from 50 €: set \"Minimum cart value\" to 50 and add the seed as gift."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:328
+#: includes/admin/views/rule-edit.php:347
 msgid "Book from 100 €: second rule with 100 as minimum. With stacking \"all\", a 120 € cart gets both."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:329
+#: includes/admin/views/rule-edit.php:348
 msgid "Buy B and C, get X: add B and C under \"Required products\" (match: all)."
 msgstr ""
 
-#: includes/admin/views/rule-edit.php:330
+#: includes/admin/views/rule-edit.php:349
 msgid "Gift with a bundle: add the bundle product under \"Required products\" or tick \"Only when the cart contains a bundle\"."
 msgstr ""
 
@@ -582,33 +624,42 @@ msgstr ""
 msgid "out of stock"
 msgstr ""
 
-#. translators: %d: product id
+#. translators: %d: stock quantity
 #: includes/admin/views/rules-list.php:112
+msgid "%d in stock"
+msgstr ""
+
+#. translators: %d: product id
+#: includes/admin/views/rules-list.php:115
 msgid "Missing product #%d"
 msgstr ""
 
 #. translators: %d: product id
-#: includes/admin/views/rules-list.php:118
+#: includes/admin/views/rules-list.php:121
 msgid "Customer picks one"
 msgstr ""
 
-#: includes/admin/views/rules-list.php:125
+#: includes/admin/views/rules-list.php:130
+msgid "budget used up"
+msgstr ""
+
+#: includes/admin/views/rules-list.php:136
 msgid "Active"
 msgstr ""
 
-#: includes/admin/views/rules-list.php:127
+#: includes/admin/views/rules-list.php:138
 msgid "Disabled"
 msgstr ""
 
-#: includes/admin/views/rules-list.php:138
+#: includes/admin/views/rules-list.php:149
 msgid "Stacking: only the qualifying rule with the highest priority adds its gifts."
 msgstr ""
 
-#: includes/admin/views/rules-list.php:140
+#: includes/admin/views/rules-list.php:151
 msgid "Stacking: every qualifying rule adds its gifts."
 msgstr ""
 
-#: includes/admin/views/rules-list.php:143
+#: includes/admin/views/rules-list.php:154
 msgid "Shortcodes: [wfg_progress] shows the progress bar anywhere, [wfg_gift_list] lists all active offers."
 msgstr ""
 
@@ -715,7 +766,7 @@ msgid "Block-based cart/checkout pages: use the [wfg_progress] shortcode in a Sh
 msgstr ""
 
 #: includes/admin/views/settings.php:93
-msgid "Placeholders: {remaining}, {threshold}, {gift}"
+msgid "Placeholders: {remaining}, {threshold}, {gift}, {left}"
 msgstr ""
 
 #: includes/admin/views/settings.php:100
@@ -746,27 +797,51 @@ msgstr ""
 msgid "Shown next to gift lines in cart, checkout, e-mails and orders."
 msgstr ""
 
-#: includes/admin/views/settings.php:131
+#: includes/admin/views/settings.php:124
+msgid "Scarcity line"
+msgstr ""
+
+#: includes/admin/views/settings.php:127
+msgid "Show when at most"
+msgstr ""
+
+#: includes/admin/views/settings.php:127
+msgid "units are left (0 = always)"
+msgstr ""
+
+#: includes/admin/views/settings.php:128
+msgid "Shown under the progress bar and in the popup for rules with a gift stock or an order budget. Placeholder: {left}. Leave empty to disable."
+msgstr ""
+
+#: includes/admin/views/settings.php:132
+msgid "Low stock warning"
+msgstr ""
+
+#: includes/admin/views/settings.php:135
+msgid "Warn on the Free Gifts admin pages when a gift has this many units (or fewer) left."
+msgstr ""
+
+#: includes/admin/views/settings.php:146
 msgid "Maintenance"
 msgstr ""
 
-#: includes/admin/views/settings.php:134
+#: includes/admin/views/settings.php:149
 msgid "Debug log"
 msgstr ""
 
-#: includes/admin/views/settings.php:136
+#: includes/admin/views/settings.php:151
 msgid "Write gift decisions to WooCommerce → Status → Logs (source: woo-free-gifts)"
 msgstr ""
 
-#: includes/admin/views/settings.php:140
+#: includes/admin/views/settings.php:155
 msgid "Uninstall"
 msgstr ""
 
-#: includes/admin/views/settings.php:142
+#: includes/admin/views/settings.php:157
 msgid "Delete all rules, settings, statistics and hidden gift products when the plugin is deleted"
 msgstr ""
 
-#: includes/admin/views/settings.php:148
+#: includes/admin/views/settings.php:163
 msgid "Save settings"
 msgstr ""
 
@@ -1081,11 +1156,11 @@ msgstr ""
 msgid "This gift is not available."
 msgstr ""
 
-#: includes/class-wfg-engine.php:456
+#: includes/class-wfg-engine.php:506
 msgid "or"
 msgstr ""
 
-#: includes/class-wfg-frontend.php:308
+#: includes/class-wfg-frontend.php:320
 msgid "Security check failed. Please try again."
 msgstr ""
 
@@ -1093,66 +1168,66 @@ msgstr ""
 msgid "A custom gift needs a name."
 msgstr ""
 
-#: includes/class-wfg-gift-products.php:119
+#: includes/class-wfg-gift-products.php:128
 msgid "The gift product could not be saved."
 msgstr ""
 
-#: includes/class-wfg-gift-products.php:265
+#: includes/class-wfg-gift-products.php:274
 msgid "This product is a free gift and cannot be purchased separately."
 msgstr ""
 
 #. translators: 1: gift name(s), 2: formatted amount
-#: includes/class-wfg-popup.php:119
+#: includes/class-wfg-popup.php:125
 msgid "%1$s for free from %2$s order value"
 msgstr ""
 
 #. translators: 1: gift name(s), 2: condition description
-#: includes/class-wfg-popup.php:127
+#: includes/class-wfg-popup.php:133
 msgid "%1$s for free – %2$s"
 msgstr ""
 
 #. translators: %s: formatted amount
-#: includes/class-wfg-rules.php:305
+#: includes/class-wfg-rules.php:321
 msgid "Cart value ≥ %s"
 msgstr ""
 
 #. translators: %s: formatted amount
-#: includes/class-wfg-rules.php:309
+#: includes/class-wfg-rules.php:325
 msgid "Cart value ≤ %s"
 msgstr ""
 
 #. translators: 1: the word all or the word any, 2: product list
-#: includes/class-wfg-rules.php:319
+#: includes/class-wfg-rules.php:335
 msgid "Cart contains %1$s of: %2$s"
 msgstr ""
 
 #. translators: 1: the word all or the word any, 2: product list
-#: includes/class-wfg-rules.php:320
+#: includes/class-wfg-rules.php:336
 msgid "any"
 msgstr ""
 
 #. translators: 1: the word all or the word any, 2: product list
-#: includes/class-wfg-rules.php:320
+#: includes/class-wfg-rules.php:336
 msgid "all"
 msgstr ""
 
 #. translators: %s: category list
-#: includes/class-wfg-rules.php:331
+#: includes/class-wfg-rules.php:347
 msgid "Cart contains a product from: %s"
 msgstr ""
 
 #. translators: %s: category list
-#: includes/class-wfg-rules.php:334
+#: includes/class-wfg-rules.php:350
 msgid "Cart contains a bundle product"
 msgstr ""
 
 #. translators: %d: item count
-#: includes/class-wfg-rules.php:338
+#: includes/class-wfg-rules.php:354
 msgid "At least %d items in cart"
 msgstr ""
 
 #. translators: %d: item count
-#: includes/class-wfg-rules.php:341
+#: includes/class-wfg-rules.php:357
 msgid "Always (no conditions)"
 msgstr ""
 
@@ -1176,71 +1251,75 @@ msgstr ""
 msgid "🎁 Free gift: {gift} from {threshold} order value."
 msgstr ""
 
-#: includes/class-wfg-settings.php:60
+#: includes/class-wfg-settings.php:52
+msgid "Only {left} left – be quick!"
+msgstr ""
+
+#: includes/class-wfg-settings.php:63
 msgid "Free gifts waiting for you 🎁"
 msgstr ""
 
-#: includes/class-wfg-settings.php:61
+#: includes/class-wfg-settings.php:64
 msgid "Reach the order value below and we add a gift to your cart automatically."
 msgstr ""
 
-#: includes/class-wfg-settings.php:62
+#: includes/class-wfg-settings.php:65
 msgid "Continue shopping"
 msgstr ""
 
-#: includes/class-wfg-settings.php:77
+#: includes/class-wfg-settings.php:80
 msgid "Spin the wheel, buddy 🍃"
 msgstr ""
 
-#: includes/class-wfg-settings.php:78
+#: includes/class-wfg-settings.php:81
 msgid "One free spin a day. Win coupons and free goodies – no strings attached."
 msgstr ""
 
-#: includes/class-wfg-settings.php:79
+#: includes/class-wfg-settings.php:82
 msgid "Spin it 🔥"
 msgstr ""
 
-#: includes/class-wfg-settings.php:81
+#: includes/class-wfg-settings.php:84
 msgid "Your e-mail address"
 msgstr ""
 
-#: includes/class-wfg-settings.php:89
+#: includes/class-wfg-settings.php:92
 msgid "Dope! Your code {code} gets you {prize}. Valid for {days} days."
 msgstr ""
 
-#: includes/class-wfg-settings.php:90
+#: includes/class-wfg-settings.php:93
 msgid "Jackpot! {prize} lands in your cart for free with your next order."
 msgstr ""
 
-#: includes/class-wfg-settings.php:91
+#: includes/class-wfg-settings.php:94
 msgid "Not this time, mate. Chill and come back tomorrow."
 msgstr ""
 
-#: includes/class-wfg-settings.php:92
+#: includes/class-wfg-settings.php:95
 msgid "You already spun today. Next spin in {hours} h."
 msgstr ""
 
-#: includes/class-wfg-settings.php:110
+#: includes/class-wfg-settings.php:113
 msgid "10 % off"
 msgstr ""
 
-#: includes/class-wfg-settings.php:120
+#: includes/class-wfg-settings.php:123
 msgid "Try again 🌱"
 msgstr ""
 
-#: includes/class-wfg-settings.php:130
+#: includes/class-wfg-settings.php:133
 msgid "5 € off"
 msgstr ""
 
-#: includes/class-wfg-settings.php:140
+#: includes/class-wfg-settings.php:143
 msgid "Free gift 🎁"
 msgstr ""
 
-#: includes/class-wfg-settings.php:150
+#: includes/class-wfg-settings.php:153
 msgid "Puff, puff, pass 💨"
 msgstr ""
 
-#: includes/class-wfg-settings.php:160
+#: includes/class-wfg-settings.php:163
 msgid "20 % off 🔥"
 msgstr ""
 
@@ -1264,11 +1343,11 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: templates/progress-box.php:70
+#: templates/progress-box.php:74
 msgid "Selected"
 msgstr ""
 
-#: templates/progress-box.php:70
+#: templates/progress-box.php:74
 msgid "Choose"
 msgstr ""
 

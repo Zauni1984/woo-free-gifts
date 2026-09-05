@@ -13,6 +13,7 @@
  * @var WFG_Engine   $engine   Engine
  * @var WFG_Cart     $cart     Cart integration
  * @var array        $messages progress (string), unlocked (string[])
+ * @var string       $scarcity "Only X left" line (may be empty)
  *
  * @package WooFreeGifts
  */
@@ -30,6 +31,9 @@ $compact = 'minicart' === $context;
 	<?php if ( $next && '' !== $messages['progress'] ) : ?>
 		<div class="wfg-progress">
 			<p class="wfg-progress__text"><?php echo esc_html( $messages['progress'] ); ?></p>
+			<?php if ( '' !== $scarcity ) : ?>
+				<p class="wfg-progress__scarcity"><?php echo esc_html( $scarcity ); ?></p>
+			<?php endif; ?>
 			<div class="wfg-progress__bar" aria-hidden="true">
 				<span class="wfg-progress__fill" style="width: <?php echo esc_attr( round( $next['percent'], 1 ) ); ?>%;"></span>
 			</div>
