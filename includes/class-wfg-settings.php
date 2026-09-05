@@ -97,6 +97,7 @@ final class WFG_Settings {
 			'wheel_segments'           => self::default_segments(),
 
 			// Maintenance.
+			'update_token'             => '', // GitHub token, only needed while the repository is private.
 			'debug_log'                => false,
 			'delete_data_on_uninstall' => false,
 		);
@@ -292,6 +293,7 @@ final class WFG_Settings {
 			$clean[ $key ] = isset( $raw[ $key ] ) ? sanitize_text_field( $raw[ $key ] ) : $d[ $key ];
 		}
 
+		$clean['update_token']             = isset( $raw['update_token'] ) ? preg_replace( '/[^A-Za-z0-9_\-.]/', '', (string) $raw['update_token'] ) : '';
 		$clean['wheel_content']            = isset( $raw['wheel_content'] ) ? wp_kses_post( $raw['wheel_content'] ) : $d['wheel_content'];
 		$clean['wheel_theme']              = ( isset( $raw['wheel_theme'] ) && 'classic' === $raw['wheel_theme'] ) ? 'classic' : 'stoner';
 		$clean['wheel_cooldown_hours']     = isset( $raw['wheel_cooldown_hours'] ) ? max( 1, min( 8760, absint( $raw['wheel_cooldown_hours'] ) ) ) : $d['wheel_cooldown_hours'];

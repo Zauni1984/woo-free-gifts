@@ -4,7 +4,9 @@
  */
 
 define( 'ABSPATH', '/fake/' );
-define( 'WFG_VERSION', '1.0.0-test' );
+define( 'WFG_VERSION', '1.2.0' );
+define( 'WFG_MIN_PHP', '7.4' );
+define( 'WFG_MIN_WC', '7.0' );
 define( 'WFG_PLUGIN_DIR', $GLOBALS['WFG_ROOT'] . '/' );
 define( 'WFG_PLUGIN_URL', 'https://example.test/wp-content/plugins/woo-free-gifts/' );
 define( 'WFG_PLUGIN_BASENAME', 'woo-free-gifts/woo-free-gifts.php' );
@@ -306,3 +308,15 @@ class WC_Coupon {
 	public function save() { $this->d['id'] = count( $GLOBALS['coupons'] ) + 100; $GLOBALS['coupons'][ strtolower( $this->d['code'] ) ] = $this->d; return $this->d['id']; }
 }
 class WC_Geolocation { public static function get_ip_address() { return $GLOBALS['ip'] ?? '203.0.113.7'; } }
+
+// Updater stubs.
+$GLOBALS['site_transients'] = array();
+function get_site_transient( $k ) { return $GLOBALS['site_transients'][ $k ] ?? false; }
+function set_site_transient( $k, $v, $ttl = 0 ) { $GLOBALS['site_transients'][ $k ] = $v; return true; }
+function delete_site_transient( $k ) { unset( $GLOBALS['site_transients'][ $k ] ); return true; }
+function home_url( $p = '' ) { return 'https://example.test' . $p; }
+function wp_remote_get( $url, $args = array() ) { return new WP_Error( 'offline', 'no network in tests' ); }
+function wp_remote_retrieve_response_code( $r ) { return 0; }
+function wp_remote_retrieve_body( $r ) { return ''; }
+function trailingslashit( $s ) { return rtrim( $s, '/' ) . '/'; }
+function untrailingslashit( $s ) { return rtrim( $s, '/' ); }

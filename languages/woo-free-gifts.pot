@@ -13,133 +13,137 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: woo-free-gifts\n"
 
-#: includes/admin/class-wfg-admin.php:75 includes/admin/class-wfg-admin.php:76
+#: includes/admin/class-wfg-admin.php:76 includes/admin/class-wfg-admin.php:77
 msgid "Free Gifts"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:124
+#: includes/admin/class-wfg-admin.php:125
 msgid "Delete this rule? Custom gifts attached to it are moved to the trash."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:125
+#: includes/admin/class-wfg-admin.php:126
 msgid "Choose gift image"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:126
+#: includes/admin/class-wfg-admin.php:127
 msgid "Use this image"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:127 includes/admin/views/rule-edit.php:51 includes/admin/views/wheel.php:42
+#: includes/admin/class-wfg-admin.php:128 includes/admin/views/rule-edit.php:51 includes/admin/views/wheel.php:42
 msgid "Remove"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:128
+#: includes/admin/class-wfg-admin.php:129
 msgid "The wheel needs at least 2 segments."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:143
+#: includes/admin/class-wfg-admin.php:144
 msgid "Free gift (hidden)"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:197
+#: includes/admin/class-wfg-admin.php:198
 msgid "You do not have permission to access this page."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:214
+#: includes/admin/class-wfg-admin.php:215
 msgid "Rule not found."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:229
+#: includes/admin/class-wfg-admin.php:230
 msgid "Woo Free Gifts"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:231
+#: includes/admin/class-wfg-admin.php:232
 msgid "Add rule"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:247
+#: includes/admin/class-wfg-admin.php:248
 msgid "Gift rules"
 msgstr ""
 
 #. translators: %s: settings link
-#: includes/admin/class-wfg-admin.php:248 includes/admin/views/rule-edit.php:192 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:147
+#: includes/admin/class-wfg-admin.php:249 includes/admin/views/rule-edit.php:192 includes/admin/views/rules-list.php:29 includes/class-wfg-plugin.php:155
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:249 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:325
+#: includes/admin/class-wfg-admin.php:250 includes/admin/views/popup.php:32 includes/admin/views/rule-edit.php:325
 msgid "Popup"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:250 includes/admin/views/stats.php:69 includes/admin/views/wheel.php:80
+#: includes/admin/class-wfg-admin.php:251 includes/admin/views/stats.php:69 includes/admin/views/wheel.php:80
 msgid "Wheel of fortune"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:251
+#: includes/admin/class-wfg-admin.php:252
 msgid "Statistics"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:295
+#: includes/admin/class-wfg-admin.php:296
 msgid "Rule saved."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:296
+#: includes/admin/class-wfg-admin.php:297
 msgid "Rule deleted."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:297
+#: includes/admin/class-wfg-admin.php:298
 msgid "Rule duplicated. It is disabled until you enable it."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:298
+#: includes/admin/class-wfg-admin.php:299
 msgid "Rule updated."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:299
+#: includes/admin/class-wfg-admin.php:300
 msgid "Settings saved."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:300
+#: includes/admin/class-wfg-admin.php:301
 msgid "Statistics reset."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:301
+#: includes/admin/class-wfg-admin.php:302
+msgid "Update check refreshed. If a newer release exists it is listed under Plugins."
+msgstr ""
+
+#: includes/admin/class-wfg-admin.php:303
 msgid "The rule was not saved: add at least one gift."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:302
+#: includes/admin/class-wfg-admin.php:304
 msgid "Something went wrong. Please try again."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:348
+#: includes/admin/class-wfg-admin.php:350
 msgid "exhausted – the rule is no longer shown to customers"
 msgstr ""
 
 #. translators: %d: units left
-#: includes/admin/class-wfg-admin.php:348
+#: includes/admin/class-wfg-admin.php:350
 msgid "only %d unit left"
 msgid_plural "only %d units left"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: units left
-#: includes/admin/class-wfg-admin.php:354
+#: includes/admin/class-wfg-admin.php:356
 msgid "Gift stock is running low:"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:381
+#: includes/admin/class-wfg-admin.php:383
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:427
+#: includes/admin/class-wfg-admin.php:429
 msgid "Gift rule"
 msgstr ""
 
-#: includes/admin/class-wfg-admin.php:505
+#: includes/admin/class-wfg-admin.php:507
 msgid "Please pick a specific variation instead of the variable parent product."
 msgstr ""
 
 #. translators: %s: original rule title
-#: includes/admin/class-wfg-admin.php:590
+#: includes/admin/class-wfg-admin.php:592
 msgid "%s (copy)"
 msgstr ""
 
@@ -834,14 +838,35 @@ msgid "Write gift decisions to WooCommerce → Status → Logs (source: woo-free
 msgstr ""
 
 #: includes/admin/views/settings.php:155
+msgid "Updates"
+msgstr ""
+
+#. translators: 1: installed version, 2: repository link
+#: includes/admin/views/settings.php:161
+msgid "Installed version %1$s. Updates are pulled from the GitHub releases of %2$s and show up under Plugins like any other update."
+msgstr ""
+
+#: includes/admin/views/settings.php:166
+msgid "Check for updates now"
+msgstr ""
+
+#: includes/admin/views/settings.php:169
+msgid "GitHub token (only for a private repository)"
+msgstr ""
+
+#: includes/admin/views/settings.php:172
+msgid "A fine-grained token with read access to the repository contents. Alternatively define WFG_GITHUB_TOKEN in wp-config.php."
+msgstr ""
+
+#: includes/admin/views/settings.php:176
 msgid "Uninstall"
 msgstr ""
 
-#: includes/admin/views/settings.php:157
+#: includes/admin/views/settings.php:178
 msgid "Delete all rules, settings, statistics and hidden gift products when the plugin is deleted"
 msgstr ""
 
-#: includes/admin/views/settings.php:163
+#: includes/admin/views/settings.php:184
 msgid "Save settings"
 msgstr ""
 
@@ -1299,28 +1324,36 @@ msgstr ""
 msgid "You already spun today. Next spin in {hours} h."
 msgstr ""
 
-#: includes/class-wfg-settings.php:113
+#: includes/class-wfg-settings.php:114
 msgid "10 % off"
 msgstr ""
 
-#: includes/class-wfg-settings.php:123
+#: includes/class-wfg-settings.php:124
 msgid "Try again 🌱"
 msgstr ""
 
-#: includes/class-wfg-settings.php:133
+#: includes/class-wfg-settings.php:134
 msgid "5 € off"
 msgstr ""
 
-#: includes/class-wfg-settings.php:143
+#: includes/class-wfg-settings.php:144
 msgid "Free gift 🎁"
 msgstr ""
 
-#: includes/class-wfg-settings.php:153
+#: includes/class-wfg-settings.php:154
 msgid "Puff, puff, pass 💨"
 msgstr ""
 
-#: includes/class-wfg-settings.php:163
+#: includes/class-wfg-settings.php:164
 msgid "20 % off 🔥"
+msgstr ""
+
+#: includes/class-wfg-updater.php:107
+msgid "Premium free gift engine for WooCommerce with cart-value gifts, buy-X-get-Y, custom hidden gifts, promo popup and a daily wheel of fortune."
+msgstr ""
+
+#: includes/class-wfg-updater.php:135
+msgid "Could not rename the update folder."
 msgstr ""
 
 #: includes/class-wfg-wheel.php:167 includes/class-wfg-wheel.php:221
@@ -1364,15 +1397,15 @@ msgid "Keep shopping"
 msgstr ""
 
 #. translators: 1: required PHP version, 2: current PHP version
-#: woo-free-gifts.php:50
+#: woo-free-gifts.php:51
 msgid "Woo Free Gifts requires PHP %1$s or newer. You are running PHP %2$s. The plugin stays inactive."
 msgstr ""
 
-#: woo-free-gifts.php:88
+#: woo-free-gifts.php:89
 msgid "Woo Free Gifts requires WooCommerce to be installed and active. The plugin stays inactive until WooCommerce is available."
 msgstr ""
 
 #. translators: 1: required WooCommerce version, 2: current WooCommerce version
-#: woo-free-gifts.php:106
+#: woo-free-gifts.php:107
 msgid "Woo Free Gifts requires WooCommerce %1$s or newer. You are running %2$s. The plugin stays inactive."
 msgstr ""

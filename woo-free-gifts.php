@@ -3,7 +3,7 @@
  * Plugin Name:       Woo Free Gifts Premium
  * Plugin URI:        https://github.com/zauni1984/woo-free-gifts
  * Description:       Premium free gift engine for WooCommerce: cart value thresholds, buy-X-get-gift bundles, custom (non-catalog) gifts, gift choice, progress bar, promo popup and a daily wheel of fortune.
- * Version:           1.0.0
+ * Version:           1.2.0
  * Author:            Stefan Zaunreither
  * Author URI:        https://github.com/zauni1984
  * Text Domain:       woo-free-gifts
@@ -13,6 +13,7 @@
  * WC requires at least: 7.0
  * WC tested up to:   9.9
  * Requires Plugins:  woocommerce
+ * Update URI:        https://github.com/Zauni1984/woo-free-gifts
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -26,7 +27,7 @@ if ( defined( 'WFG_VERSION' ) ) {
 	return;
 }
 
-define( 'WFG_VERSION', '1.0.0' );
+define( 'WFG_VERSION', '1.2.0' );
 define( 'WFG_PLUGIN_FILE', __FILE__ );
 define( 'WFG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WFG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

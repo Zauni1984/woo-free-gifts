@@ -6,7 +6,7 @@ Tested up to: 6.8
 Requires PHP: 7.4
 WC requires at least: 7.0
 WC tested up to: 9.9
-Stable tag: 1.0.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,5 +86,17 @@ Each gift line carries a visible "Free gift" meta with the rule name. Statistics
 
 == Changelog ==
 
+= 1.2.0 =
+* Stock field for custom gifts (WooCommerce stock management on the hidden product).
+* Order budget per rule ("max. orders"), rule switches off when used up.
+* "Only X left" scarcity line in progress bar and popup, low-stock admin warning.
+* Rules whose gift is out of stock are no longer offered as next target.
+* Built-in updates from GitHub releases (Update URI), optional token for private repositories.
+
+= 1.1.0 =
+* Wheel of fortune with daily spins, coupon and gift prizes, 420/stoner and classic themes.
+* Server-side prize selection and cooldown (account, session, signed cookie, hashed IP, hashed e-mail).
+* Spin statistics and log.
+
 = 1.0.0 =
-* Initial release.
+* Initial release: gift rules, custom hidden gifts, gift choice, progress bar, promo popup.

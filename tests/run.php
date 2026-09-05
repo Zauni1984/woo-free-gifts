@@ -382,5 +382,29 @@ $seg = WFG_Settings::sanitize_segments( array(
 ok( 3 === count( $seg ) && 100.0 === $seg[0]['amount'] && 'mycode' === $seg[0]['code'] && 3 === $seg[0]['weight'] && 'none' === $seg[1]['type'] && 'none' === $seg[2]['type'] && '#' === $seg[2]['color'][0], 'segments sanitized (cap, code, gift without product → none)' );
 ok( array( 'x' ) === WFG_Settings::sanitize_segments( array( array( 'label' => 'only one' ) ), array( 'x' ) ), 'fewer than 2 segments keep the fallback' );
 
+// ---------------------------------------------------------------------------
+section( 'Updater' );
+$release = array( 'tag_name' => 'v1.3.0', 'html_url' => 'https://github.com/Zauni1984/woo-free-gifts/releases/tag/v1.3.0', 'body' => "- Fix <b>x</b>", 'published_at' => '2026-10-01T10:00:00Z', 'zipball_url' => 'https://api.github.com/repos/Zauni1984/woo-free-gifts/zipball/v1.3.0', 'assets' => array(
+	array( 'name' => 'source.zip', 'browser_download_url' => 'https://github.com/x/source.zip', 'url' => 'https://api.github.com/repos/Zauni1984/woo-free-gifts/releases/assets/1' ),
+	array( 'name' => 'woo-free-gifts-1.3.0.zip', 'browser_download_url' => 'https://github.com/x/woo-free-gifts-1.3.0.zip', 'url' => 'https://api.github.com/repos/Zauni1984/woo-free-gifts/releases/assets/2' ),
+) );
+$parsed = WFG_Updater::parse( $release );
+ok( '1.3.0' === $parsed['version'] && 'https://github.com/x/woo-free-gifts-1.3.0.zip' === $parsed['package'], 'release parsed, own ZIP asset preferred' );
+ok( false === strpos( $parsed['changelog'], '<b>' ) && false !== strpos( $parsed['changelog'], 'Fix' ), 'changelog escaped' );
+ok( 'https://api.github.com/repos/Zauni1984/woo-free-gifts/releases/assets/2' === WFG_Updater::parse( $release, true )['package'], 'private repo uses API asset URL' );
+ok( null === WFG_Updater::parse( array_merge( $release, array( 'prerelease' => true ) ) ), 'pre-releases ignored' );
+ok( null === WFG_Updater::parse( array_merge( $release, array( 'tag_name' => 'beta' ) ) ), 'non-numeric tags ignored' );
+$no_assets = $release; unset( $no_assets['assets'] );
+ok( $no_assets['zipball_url'] === WFG_Updater::parse( $no_assets )['package'], 'falls back to zipball' );
+$updater = new WFG_Updater( $settings );
+set_site_transient( WFG_Updater::TRANSIENT, $parsed );
+$u = $updater->check( false, array(), WFG_PLUGIN_BASENAME );
+ok( is_array( $u ) && '1.3.0' === $u['version'] && WFG_PLUGIN_BASENAME === $u['plugin'], 'newer release reported to WordPress' );
+set_site_transient( WFG_Updater::TRANSIENT, array_merge( $parsed, array( 'version' => '0.9.0' ) ) );
+ok( false === $updater->check( false, array(), WFG_PLUGIN_BASENAME ), 'older release: no update' );
+ok( 'keep' === $updater->check( 'keep', array(), 'other/plugin.php' ), 'other plugins untouched' );
+$args = $updater->authorize_download( array(), 'https://api.github.com/repos/Zauni1984/woo-free-gifts/releases/assets/2' );
+ok( empty( $args['headers'] ), 'no token: no auth header' );
+
 echo "\n$passed passed, $failed failed\n";
 exit( $failed ? 1 : 0 );

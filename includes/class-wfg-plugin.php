@@ -83,6 +83,13 @@ final class WFG_Plugin {
 	public $wheel;
 
 	/**
+	 * GitHub release updater.
+	 *
+	 * @var WFG_Updater
+	 */
+	public $updater;
+
+	/**
 	 * Get singleton.
 	 *
 	 * @return WFG_Plugin
@@ -111,6 +118,7 @@ final class WFG_Plugin {
 		$this->frontend      = new WFG_Frontend( $this->settings, $this->engine, $this->cart );
 		$this->popup         = new WFG_Popup( $this->settings, $this->rules, $this->engine );
 		$this->wheel         = new WFG_Wheel( $this->settings, $this->engine );
+		$this->updater       = new WFG_Updater( $this->settings );
 
 		new WFG_Ajax( $this->settings, $this->engine, $this->cart );
 		new WFG_Shortcodes( $this->frontend );

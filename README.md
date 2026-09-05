@@ -69,6 +69,23 @@ Produkte **innerhalb** von Bundles zählen für Produkt- und Kategoriebedingunge
 4. **Regel „B + C = X“**: Pflichtprodukte B und C (alle), Geschenk X.
 5. Popup aktivieren, Häufigkeit „einmal pro Session“, Angebote werden automatisch aufgelistet.
 
+## Versionen & Updates
+
+- Die Versionsnummer steht im Plugin-Header von `woo-free-gifts.php` (`Version:`) und in `readme.txt` (`Stable tag`). Änderungen stehen in `CHANGELOG.md`. Es gilt Semantic Versioning: neue Funktionen erhöhen die mittlere Zahl, Fehlerbehebungen die letzte.
+- **Automatische Updates**: Das Plugin trägt `Update URI: https://github.com/Zauni1984/woo-free-gifts` und prüft die GitHub-Releases dieses Repos. Ein neueres Release erscheint in WordPress unter Plugins als normales Update mit „Details anzeigen“ (Changelog aus den Release-Notes) und lässt sich per Klick installieren. Unter WooCommerce → Free Gifts → Einstellungen → Updates gibt es „Jetzt nach Updates suchen“.
+- **Privates Repository**: Dann braucht jeder Shop ein GitHub-Token (Fine-grained, Lesezugriff auf Contents), eingetragen in den Einstellungen oder als `WFG_GITHUB_TOKEN` in der `wp-config.php`. Bei einem öffentlichen Repo ist kein Token nötig.
+- **Release veröffentlichen** (nach dem Merge in `main`):
+
+  ```bash
+  # 1. Version in woo-free-gifts.php, readme.txt und CHANGELOG.md erhöhen, committen
+  # 2. Tag setzen und pushen
+  git tag v1.2.0
+  git push origin v1.2.0
+  ```
+
+  Der Workflow `.github/workflows/release.yml` prüft, dass Tag und Header-Version übereinstimmen, lässt Lint und Tests laufen, baut `woo-free-gifts-1.2.0.zip` und legt ein GitHub-Release mit dem Changelog-Abschnitt an. Danach sehen alle Shops das Update.
+- **ZIP manuell bauen**: `bin/build-zip.sh` erzeugt `woo-free-gifts-<version>.zip`. Im ZIP heißt der Ordner immer `woo-free-gifts`, damit WordPress das Plugin an Ort und Stelle aktualisiert.
+
 ## Entwickler
 
 ### Hooks

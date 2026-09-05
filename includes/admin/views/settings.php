@@ -152,6 +152,27 @@ $opt = $settings->all();
 				</td>
 			</tr>
 			<tr>
+				<th scope="row"><?php esc_html_e( 'Updates', 'woo-free-gifts' ); ?></th>
+				<td>
+					<p>
+						<?php
+						printf(
+							/* translators: 1: installed version, 2: repository link */
+							esc_html__( 'Installed version %1$s. Updates are pulled from the GitHub releases of %2$s and show up under Plugins like any other update.', 'woo-free-gifts' ),
+							'<strong>' . esc_html( WFG_VERSION ) . '</strong>',
+							'<a href="https://github.com/Zauni1984/woo-free-gifts/releases" target="_blank" rel="noopener">Zauni1984/woo-free-gifts</a>'
+						);
+						?>
+						<a href="<?php echo esc_url( WFG_Admin::action_url( 'wfg_check_updates' ) ); ?>" class="button"><?php esc_html_e( 'Check for updates now', 'woo-free-gifts' ); ?></a>
+					</p>
+					<p>
+						<label for="wfg-update-token"><?php esc_html_e( 'GitHub token (only for a private repository)', 'woo-free-gifts' ); ?></label><br>
+						<input type="password" id="wfg-update-token" name="wfg[update_token]" value="<?php echo esc_attr( $opt['update_token'] ); ?>" class="regular-text" autocomplete="off">
+					</p>
+					<p class="description"><?php esc_html_e( 'A fine-grained token with read access to the repository contents. Alternatively define WFG_GITHUB_TOKEN in wp-config.php.', 'woo-free-gifts' ); ?></p>
+				</td>
+			</tr>
+			<tr>
 				<th scope="row"><?php esc_html_e( 'Uninstall', 'woo-free-gifts' ); ?></th>
 				<td>
 					<?php echo WFG_Admin::checkbox( 'wfg[delete_data_on_uninstall]', $opt['delete_data_on_uninstall'], __( 'Delete all rules, settings, statistics and hidden gift products when the plugin is deleted', 'woo-free-gifts' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

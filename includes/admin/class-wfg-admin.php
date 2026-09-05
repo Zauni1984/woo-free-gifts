@@ -59,6 +59,7 @@ final class WFG_Admin {
 		add_action( 'admin_post_wfg_duplicate_rule', array( $this, 'handle_duplicate_rule' ) );
 		add_action( 'admin_post_wfg_save_settings', array( $this, 'handle_save_settings' ) );
 		add_action( 'admin_post_wfg_reset_stats', array( $this, 'handle_reset_stats' ) );
+		add_action( 'admin_post_wfg_check_updates', array( $this, 'handle_check_updates' ) );
 
 		// Mark custom gift products in the product list when revealed.
 		add_filter( 'display_post_states', array( $this, 'post_states' ), 10, 2 );
@@ -298,6 +299,7 @@ final class WFG_Admin {
 			'toggled'    => array( 'success', __( 'Rule updated.', 'woo-free-gifts' ) ),
 			'settings'   => array( 'success', __( 'Settings saved.', 'woo-free-gifts' ) ),
 			'stats'      => array( 'success', __( 'Statistics reset.', 'woo-free-gifts' ) ),
+			'updates'    => array( 'success', __( 'Update check refreshed. If a newer release exists it is listed under Plugins.', 'woo-free-gifts' ) ),
 			'nogift'     => array( 'error', __( 'The rule was not saved: add at least one gift.', 'woo-free-gifts' ) ),
 			'error'      => array( 'error', __( 'Something went wrong. Please try again.', 'woo-free-gifts' ) ),
 		);
@@ -653,6 +655,18 @@ final class WFG_Admin {
 
 		$tab = isset( $_POST['wfg_tab'] ) ? sanitize_key( $_POST['wfg_tab'] ) : 'settings'; // phpcs:ignore WordPress.Security.NonceVerification -- verified in guard().
 		$this->redirect( self::url( in_array( $tab, array( 'settings', 'popup', 'wheel' ), true ) ? $tab : 'settings' ), 'settings' );
+	}
+
+	/**
+	 * Manual update check.
+	 */
+	public function handle_check_updates() {
+		$this->guard( 'wfg_check_updates', 'GET' );
+		$plugin = wfg();
+		if ( $plugin && $plugin->updater ) {
+			$plugin->updater->force_check();
+		}
+		$this->redirect( self::url( 'settings' ), 'updates' );
 	}
 
 	/**

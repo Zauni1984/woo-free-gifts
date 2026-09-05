@@ -1,0 +1,51 @@
+name: Release
+
+# Push a tag like v1.2.0 and this workflow builds the plugin ZIP and attaches it
+# to a GitHub release. Shops running the plugin then see the update under Plugins.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify tag matches plugin version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VERSION="$(sed -n 's/^ \* Version:[[:space:]]*//p' woo-free-gifts.php | head -n1 | tr -d '[:space:]')"
+          echo "tag=$TAG plugin=$VERSION"
+          test "$TAG" = "$VERSION" || { echo "Tag $TAG does not match plugin header version $VERSION"; exit 1; }
+
+      - name: Lint PHP
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Run tests
+        run: php tests/run.php && php tests/render.php
+
+      - name: Build ZIP
+        run: bash bin/build-zip.sh "$GITHUB_WORKSPACE/woo-free-gifts-${GITHUB_REF_NAME#v}.zip"
+
+      - name: Extract changelog section
+        id: changelog
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '
+            $0 ~ "^## \\[?"v"\\]?" {flag=1; next}
+            /^## / {if (flag) exit}
+            flag {print}
+          ' CHANGELOG.md > release-notes.md
+          [ -s release-notes.md ] || echo "Release $VERSION" > release-notes.md
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Woo Free Gifts ${{ github.ref_name }}"
+          body_path: release-notes.md
+          files: woo-free-gifts-*.zip
